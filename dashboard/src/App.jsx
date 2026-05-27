@@ -32,8 +32,9 @@ export default function App() {
       {/* Noise Overlay */}
       <div className="noise-overlay" />
 
-      {/* Main Content — no left margin, bottom padding for dock clearance */}
-      <main className="min-h-screen pb-28">
+      {/* Main Content — centered, bottom padding for dock clearance */}
+      <main className="min-h-screen pb-32">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
@@ -46,6 +47,7 @@ export default function App() {
             <ActiveSection />
           </motion.div>
         </AnimatePresence>
+        </div>
       </main>
 
       {/* Bottom Dock Navigation */}
