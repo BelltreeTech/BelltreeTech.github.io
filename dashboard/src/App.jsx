@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Sidebar from "./components/Sidebar";
+import BottomDock from "./components/Sidebar";
 import ExecutiveSummary from "./sections/ExecutiveSummary";
 import ProofOfWork from "./sections/ProofOfWork";
 import TimelineArbitrage from "./sections/TimelineArbitrage";
@@ -32,11 +32,8 @@ export default function App() {
       {/* Noise Overlay */}
       <div className="noise-overlay" />
 
-      {/* Sidebar Navigation */}
-      <Sidebar active={active} onNavigate={setActive} />
-
-      {/* Main Content */}
-      <main className="lg:ml-[72px] min-h-screen pb-20 lg:pb-0">
+      {/* Main Content — no left margin, bottom padding for dock clearance */}
+      <main className="min-h-screen pb-28">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
@@ -50,6 +47,9 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
       </main>
+
+      {/* Bottom Dock Navigation */}
+      <BottomDock active={active} onNavigate={setActive} />
     </div>
   );
 }
