@@ -50,7 +50,7 @@ export default function Sidebar({ active, onNavigate }) {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-[72px] hover:w-[240px] flex-col justify-between py-6 px-3 z-50 glass transition-all duration-500 group overflow-hidden">
+      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-[72px] hover:w-[240px] flex-col justify-between py-6 px-3 z-50 bg-[#060608]/97 backdrop-blur-xl border-r border-[var(--color-border)] transition-all duration-500 group overflow-hidden">
         {/* Logo */}
         <div className="flex items-center gap-3 px-2 mb-10 min-w-0">
           <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-emerald-400 flex items-center justify-center flex-shrink-0">
