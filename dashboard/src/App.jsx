@@ -57,7 +57,7 @@ export default function App() {
           </AnimatePresence>
 
           {/* 👇 物理的な透明スペーサー。これで絶対にボトムドックと被らない 👇 */}
-          <div className="h-40 w-full pointer-events-none flex-shrink-0" aria-hidden="true" />
+          <div className="h-20 w-full pointer-events-none flex-shrink-0" aria-hidden="true" />
 
         </div>
       </main>
