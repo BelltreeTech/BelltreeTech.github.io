@@ -44,11 +44,26 @@ export default function ExecutiveSummary() {
         
         {/* === TOP SECTION === */}
         <div className="flex flex-col items-center gap-6 mb-12 w-full text-center">
+          {/* Name & Handle */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="flex flex-col items-center gap-1"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]">
+              {profile.name}
+            </h2>
+            <span className="text-sm sm:text-base font-mono text-[var(--color-cyber-blue)] tracking-wider opacity-80">
+              @{profile.handle}
+            </span>
+          </motion.div>
+
           {/* Main Title */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.25 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.1]"
           >
             <span className="text-[var(--color-text-primary)]">{hero.titleLine1}</span>

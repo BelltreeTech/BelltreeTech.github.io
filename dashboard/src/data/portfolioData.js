@@ -149,6 +149,15 @@ export const timeline = [
     ],
     active: false,
   },
+  {
+    year: "2007",
+    title: "誕生",
+    subtitle: "",
+    acquiredCapital: [
+
+    ],
+    active: false,
+  },
 ];
 export const domains = {
   psychology: {
