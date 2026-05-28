@@ -4,6 +4,7 @@ import BottomDock from "./components/Sidebar";
 import ExecutiveSummary from "./sections/ExecutiveSummary";
 import ProofOfWork from "./sections/ProofOfWork";
 import TimelineArbitrage from "./sections/TimelineArbitrage";
+import Validations from "./sections/Validations";
 import DomainExpertise from "./sections/DomainExpertise";
 import TechStackSpec from "./sections/TechStackSpec";
 import ResourceRequest from "./sections/ResourceRequest";
@@ -13,6 +14,7 @@ const sections = {
   executive: ExecutiveSummary,
   projects: ProofOfWork,
   timeline: TimelineArbitrage,
+  validations: Validations,
   domain: DomainExpertise,
   tech: TechStackSpec,
   roadmap: ResourceRequest,

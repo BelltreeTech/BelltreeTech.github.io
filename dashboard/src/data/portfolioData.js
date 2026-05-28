@@ -3,7 +3,7 @@ export const profile = {
   name: "Shinri Suzuki",
   handle: "BelltreeTech",
   tagline: "Hybrid Architect — AI Implementation × Law & Psychology Domain",
-  affiliation: "慶應SFC / 一般社団法人ウェルネステックラボ",
+  affiliation: "慶應義塾大学 総合政策学 / 一般社団法人ウェルネステックラボ / Makers University U-18 第10期生",
   statement:
     " SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力。市場の空白地帯を独占するハイブリッド・アーキテクト。",
   socials: {
@@ -256,6 +256,29 @@ export const resourceRequests = [
   },
 ];
 
+export const validations = [
+  {
+    id: 1,
+    type: "Award",
+    date: "2025-02",
+    title: "第10回高校生国際シンポジウム 医療医学部門 最優秀賞",
+    issuer: "一般社団法人Glocal Academy",
+    description:
+      "医療AI分野における研究発表で最優秀賞を受賞。FACSを用いた感情認識技術の社会実装可能性が高く評価された。",
+    link: null,
+  },
+  {
+    id: 2,
+    type: "Award",
+    date: "2025-03",
+    title: "第68回全国学芸サイエンスコンクール スタートアップ部門 銀賞",
+    issuer: "旺文社",
+    description:
+      "全国規模のサイエンスコンクールにおいて、Polarisのビジネスモデルと技術的独自性が評価され銀賞を獲得。",
+    link: null,
+  },
+];
+
 export const siteConfig = {
   meta: {
     title: "Shinri Suzuki — Hybrid Architect Portfolio",
@@ -266,6 +289,7 @@ export const siteConfig = {
     { id: "executive", label: "Summary" },
     { id: "projects", label: "Projects" },
     { id: "timeline", label: "Timeline" },
+    { id: "validations", label: "Validation" },
     { id: "domain", label: "Domain" },
     { id: "tech", label: "Tech" },
     { id: "roadmap", label: "Roadmap" },
@@ -275,7 +299,7 @@ export const siteConfig = {
     titleLine2: "Architect",
     subtitle: "AI Implementation × Law & Psychology Domain",
     terminalFile: "value_proposition.sh",
-    statusBadge: "System Online — Portfolio v2.0",
+    statusBadge: "System Online — Portfolio v1.0",
     chips: ["SFC '26", "東大松尾研", "AI Engineer", "法 × 心理 × AI"],
     navigateHint: "Navigate",
   },
@@ -292,8 +316,16 @@ export const siteConfig = {
       title: "Leverage Accumulation",
       labels: { acquiredCapital: "Acquired Capital", current: "Current" },
     },
-    domain: {
+    validations: {
       number: "04",
+      slug: "Third-Party Validation",
+      title: "Awards & Press",
+      description:
+        "第三者機関による客観的な評価。技術力とビジョンの社会的信頼性を証明する。",
+      labels: { award: "Award", press: "Press" },
+    },
+    domain: {
+      number: "05",
       slug: "Domain Expertise",
       title: "Two Pillars of Knowledge",
       description:
@@ -304,7 +336,7 @@ export const siteConfig = {
       },
     },
     tech: {
-      number: "05",
+      number: "06",
       slug: "Technical Stack Spec",
       title: "Capability Matrix",
       labels: {
@@ -318,7 +350,7 @@ export const siteConfig = {
       ],
     },
     roadmap: {
-      number: "06",
+      number: "07",
       slug: "Resource Request & Roadmap",
       title: "Strategic Roadmap",
       resourcePanel: {
