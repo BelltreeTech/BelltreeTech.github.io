@@ -158,9 +158,9 @@ export default function Validations() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-5 text-xs font-mono text-[var(--color-cyber-blue)] hover:underline transition-colors"
+                    className="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg text-xs font-mono border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-cyber-blue)] hover:border-[var(--color-cyber-blue)] hover:bg-[rgba(0,229,255,0.05)] hover:shadow-[0_0_12px_rgba(0,229,255,0.15)] transition-all duration-300"
                   >
-                    <ExternalLink size={12} />
+                    <ExternalLink size={13} />
                     View Details
                   </a>
                 )}

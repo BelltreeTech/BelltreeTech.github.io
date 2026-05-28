@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ExternalLink } from "lucide-react";
 import { timeline, siteConfig } from "../data/portfolioData";
 
 const nodeVariants = {
@@ -84,11 +84,24 @@ export default function TimelineArbitrage() {
                         {node.subtitle}
                       </p>
                     </div>
-                    {node.active && (
-                      <span className="px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest rounded-full border border-[var(--color-neon-emerald)]/30 text-[var(--color-neon-emerald)] bg-[rgba(0,255,170,0.05)]">
-                        {siteConfig.sections.timeline.labels.current}
-                      </span>
-                    )}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      {node.url && (
+                        <a
+                          href={node.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1.5 rounded-lg border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-cyber-blue)] hover:border-[var(--color-cyber-blue)] hover:bg-[rgba(0,229,255,0.05)] transition-all duration-300"
+                          title="Open link"
+                        >
+                          <ExternalLink size={14} />
+                        </a>
+                      )}
+                      {node.active && (
+                        <span className="px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest rounded-full border border-[var(--color-neon-emerald)]/30 text-[var(--color-neon-emerald)] bg-[rgba(0,255,170,0.05)]">
+                          {siteConfig.sections.timeline.labels.current}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {/* Acquired Capital */}

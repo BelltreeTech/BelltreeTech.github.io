@@ -82,6 +82,7 @@ export const timeline = [
       "トップティアAI研究者・エンジニアとのネットワーク",
     ],
     active: true,
+    url: "https://weblab.t.u-tokyo.ac.jp/",
   },
   {
     year: "2026",
@@ -93,6 +94,7 @@ export const timeline = [
       "アカデミアと実社会を接続する文理融合の知見",
     ],
     active: true,
+    url: "https://www.sfc.keio.ac.jp/",
   },
   {
     year: "2025",
@@ -104,6 +106,7 @@ export const timeline = [
       "研究を「実社会のプロダクト」へ昇華させる事業設計",
     ],
     active: true,
+    url: null,
   },
   {
     year: "2025",
@@ -115,6 +118,7 @@ export const timeline = [
       "プロダクト(Polaris)の市場価値検証とピッチ力",
     ],
     active: false,
+    url: "https://makers-u18.jp/",
   },
   {
     year: "2024",
@@ -265,7 +269,7 @@ export const validations = [
     issuer: "一般社団法人Glocal Academy",
     description:
       "医療AI分野における研究発表で最優秀賞を受賞。FACSを用いた感情認識技術の社会実装可能性が高く評価された。",
-    link: null,
+    link: "https://www.glocal-academy.or.jp/_files/ugd/c02fe8_917710ea1f6649db860f7258efdae449.pdf",
   },
   {
     id: 2,
@@ -275,7 +279,7 @@ export const validations = [
     issuer: "旺文社",
     description:
       "全国規模のサイエンスコンクールにおいて、Polarisのビジネスモデルと技術的独自性が評価され銀賞を獲得。",
-    link: null,
+    link: "https://www.obunsha.co.jp/gakkon/",
   },
 ];
 
