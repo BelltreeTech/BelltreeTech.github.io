@@ -47,12 +47,12 @@ const cardVariants = {
 
 export default function ProofOfWork() {
   return (
-    <section className="relative px-6 py-20 overflow-hidden">
+    <section className="relative px-6 sm:px-10 py-24 overflow-hidden">
       <div className="absolute inset-0 dot-matrix opacity-30" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-16">
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -85,17 +85,17 @@ export default function ProofOfWork() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 lg:gap-12"
         >
           {projects.map((project) => (
             <motion.article
               key={project.id}
               variants={cardVariants}
-              className="glass-card p-6 flex flex-col"
+              className="glass-card p-7 sm:p-9 flex flex-col"
             >
               {/* Status */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-mono tracking-widest uppercase text-[var(--color-neon-emerald)] px-2 py-0.5 rounded-full border border-[rgba(0,255,170,0.2)] bg-[rgba(0,255,170,0.05)]">
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-[11px] font-mono tracking-widest uppercase text-[var(--color-neon-emerald)] px-3 py-1 rounded-full border border-[rgba(0,255,170,0.2)] bg-[rgba(0,255,170,0.05)]">
                   {project.status}
                 </span>
                 <div className="flex gap-2">
@@ -123,53 +123,53 @@ export default function ProofOfWork() {
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-1">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[var(--color-text-primary)] mb-2 leading-tight">
                 {project.name}
               </h3>
-              <p className="text-xs font-mono text-[var(--color-cyber-blue)] mb-3">
+              <p className="text-sm font-mono text-[var(--color-cyber-blue)] mb-5">
                 {project.tagline}
               </p>
 
               {/* Problem / Solution */}
-              <div className="space-y-3 mb-5 flex-1">
+              <div className="space-y-5 mb-8 flex-1">
                 <div>
-                  <span className="text-[10px] font-mono text-[var(--color-text-muted)] uppercase tracking-wider">
+                  <span className="text-xs font-mono text-[var(--color-text-muted)] uppercase tracking-wider">
                     {siteConfig.sections.projects.labels.problem}
                   </span>
-                  <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mt-1">
+                  <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mt-2">
                     {project.problem}
                   </p>
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono text-[var(--color-text-muted)] uppercase tracking-wider">
+                  <span className="text-xs font-mono text-[var(--color-text-muted)] uppercase tracking-wider">
                     {siteConfig.sections.projects.labels.solution}
                   </span>
-                  <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mt-1">
+                  <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mt-2">
                     {project.solution}
                   </p>
                 </div>
               </div>
 
               {/* Metrics */}
-              <div className="flex flex-wrap gap-2 mb-5">
+              <div className="flex flex-wrap gap-3 mb-8">
                 {project.metrics.map((m) => {
                   const Icon = iconMap[m.icon] || Cpu;
                   return (
-                    <div key={m.label} className="metric-badge flex-1 min-w-[80px]">
-                      <div className="flex items-center gap-1.5">
-                        <Icon size={12} className="text-[var(--color-cyber-blue)]" />
-                        <span className="metric-value text-lg">{m.value}</span>
+                    <div key={m.label} className="metric-badge flex-1 min-w-[100px] p-3 sm:p-4">
+                      <div className="flex items-center gap-2">
+                        <Icon size={16} className="text-[var(--color-cyber-blue)]" />
+                        <span className="metric-value text-2xl sm:text-3xl">{m.value}</span>
                       </div>
-                      <span className="metric-label">{m.label}</span>
+                      <span className="metric-label text-[11px]">{m.label}</span>
                     </div>
                   );
                 })}
               </div>
 
               {/* Tech Stack */}
-              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[var(--color-border)]">
+              <div className="flex flex-wrap gap-2.5 pt-5 border-t border-[var(--color-border)]">
                 {project.stack.map((tech) => (
-                  <span key={tech} className="tech-tag">
+                  <span key={tech} className="tech-tag px-4 py-1.5 text-sm">
                     {tech}
                   </span>
                 ))}
