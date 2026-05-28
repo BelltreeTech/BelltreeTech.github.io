@@ -140,17 +140,21 @@ export default function Validations() {
                 </h3>
 
                 {/* Issuer */}
-                <p
-                  className="text-xs font-mono tracking-wider mb-4"
-                  style={{ color: config.color }}
-                >
-                  {item.issuer}
-                </p>
+                {item.issuer && (
+                  <p
+                    className="text-xs font-mono tracking-wider mb-4"
+                    style={{ color: config.color }}
+                  >
+                    {item.issuer}
+                  </p>
+                )}
 
                 {/* Description */}
-                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
-                  {item.description}
-                </p>
+                {item.description && (
+                  <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                    {item.description}
+                  </p>
+                )}
 
                 {/* Link (if any) */}
                 {item.link && (
