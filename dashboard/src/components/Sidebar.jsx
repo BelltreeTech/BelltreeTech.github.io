@@ -7,23 +7,24 @@ import {
   Cpu,
   Rocket,
 } from "lucide-react";
+import { siteConfig } from "../data/portfolioData";
 
-const navItems = [
-  { id: "executive", label: "Summary", icon: LayoutDashboard },
-  { id: "projects", label: "Projects", icon: FolderKanban },
-  { id: "timeline", label: "Timeline", icon: GitBranch },
-  { id: "domain", label: "Domain", icon: BookOpen },
-  { id: "tech", label: "Tech", icon: Cpu },
-  { id: "roadmap", label: "Roadmap", icon: Rocket },
-];
+const iconMap = {
+  executive: LayoutDashboard,
+  projects: FolderKanban,
+  timeline: GitBranch,
+  domain: BookOpen,
+  tech: Cpu,
+  roadmap: Rocket,
+};
 
 export default function BottomDock({ active, onNavigate }) {
   return (
     <nav className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 px-3 sm:px-4 md:px-5 py-2.5 md:py-3 rounded-2xl bg-[#060608]/80 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.5),0_0_80px_rgba(0,229,255,0.04)]">
       <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-        {navItems.map((item) => {
+        {siteConfig.nav.map((item) => {
           const isActive = active === item.id;
-          const Icon = item.icon;
+          const Icon = iconMap[item.id];
           return (
             <button
               key={item.id}

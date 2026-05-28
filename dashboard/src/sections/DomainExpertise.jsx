@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Brain, Scale, ChevronRight } from "lucide-react";
-import { domains } from "../data/portfolioData";
+import { domains, siteConfig } from "../data/portfolioData";
 
 const iconMap = { brain: Brain, scale: Scale };
 
@@ -29,7 +29,7 @@ export default function DomainExpertise() {
             viewport={{ once: true }}
             className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
           >
-            04 // Domain Expertise
+            {`${siteConfig.sections.domain.number} // ${siteConfig.sections.domain.slug}`}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -38,7 +38,7 @@ export default function DomainExpertise() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
           >
-            Two Pillars of Knowledge
+            {siteConfig.sections.domain.title}
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -54,7 +54,7 @@ export default function DomainExpertise() {
             transition={{ delay: 0.4 }}
             className="text-[var(--color-text-secondary)] mt-4 max-w-2xl text-sm leading-relaxed"
           >
-            単なるコーダーではなく「思想家」として、技術と人間社会の接点を設計する。
+            {siteConfig.sections.domain.description}
           </motion.p>
         </div>
 
@@ -157,7 +157,7 @@ export default function DomainExpertise() {
             <Brain size={20} className="text-[var(--color-cyber-blue)] flex-shrink-0" />
             <div className="w-px h-8 bg-[var(--color-border)]" />
             <span className="text-sm sm:text-base font-mono text-[var(--color-text-secondary)]">
-              Psychology × AI × Law = <span className="text-[var(--color-neon-emerald)] font-bold">Unique Position</span>
+              {siteConfig.sections.domain.intersection.formula} = <span className="text-[var(--color-neon-emerald)] font-bold">{siteConfig.sections.domain.intersection.result}</span>
             </span>
             <div className="w-px h-8 bg-[var(--color-border)]" />
             <Scale size={20} className="text-[var(--color-neon-purple)] flex-shrink-0" />

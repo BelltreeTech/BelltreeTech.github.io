@@ -5,7 +5,7 @@ export const profile = {
   tagline: "Hybrid Architect — AI Implementation × Law & Psychology Domain",
   affiliation: "慶應SFC / 一般社団法人ウェルネステックラボ",
   statement:
-    "SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力。市場の空白地帯を独占するハイブリッド・アーキテクト。",
+    " SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力。市場の空白地帯を独占するハイブリッド・アーキテクト。",
   socials: {
     github: "https://github.com/BelltreeTech",
     linkedin: "https://www.linkedin.com/in/shinri-suzuki-605475312/",
@@ -75,7 +75,7 @@ export const timeline = [
   {
     year: "2026",
     title: "東京大学 松尾・岩澤研究室 プログラム",
-    subtitle: "GLOBAL CONSUMER INTELLIGENCE 2026 Summer / DeepLearning基礎講座 2026 Spring",
+    subtitle: "GLOBAL CONSUMER INTELLIGENCE 2026 Summer / Deep Learning Basic 2026 Spring",
     acquiredCapital: [
       "深層学習の数理的基盤とアルゴリズム実装力",
       "大規模データセットを用いた実践的分析スキル",
@@ -103,7 +103,7 @@ export const timeline = [
       "多様な専門家(医療・教育等)を巻き込む巻き込み力",
       "研究を「実社会のプロダクト」へ昇華させる事業設計",
     ],
-    active: false,
+    active: true,
   },
   {
     year: "2025",
@@ -150,7 +150,6 @@ export const timeline = [
     active: false,
   },
 ];
-
 export const domains = {
   psychology: {
     title: "Psychology",
@@ -247,3 +246,84 @@ export const resourceRequests = [
     priority: "MEDIUM",
   },
 ];
+
+export const siteConfig = {
+  meta: {
+    title: "Shinri Suzuki — Hybrid Architect Portfolio",
+    description:
+      "AI Implementation × Law & Psychology Domain. SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力。",
+  },
+  nav: [
+    { id: "executive", label: "Summary" },
+    { id: "projects", label: "Projects" },
+    { id: "timeline", label: "Timeline" },
+    { id: "domain", label: "Domain" },
+    { id: "tech", label: "Tech" },
+    { id: "roadmap", label: "Roadmap" },
+  ],
+  hero: {
+    titleLine1: "Hybrid",
+    titleLine2: "Architect",
+    subtitle: "AI Implementation × Law & Psychology Domain",
+    terminalFile: "value_proposition.sh",
+    statusBadge: "System Online — Portfolio v2.0",
+    chips: ["SFC '26", "東大松尾研", "AI Engineer", "法 × 心理 × AI"],
+    navigateHint: "Navigate",
+  },
+  sections: {
+    projects: {
+      number: "02",
+      slug: "Proof of Work",
+      title: "Projects",
+      labels: { problem: "Problem", solution: "Solution" },
+    },
+    timeline: {
+      number: "03",
+      slug: "Timeline of Arbitrage",
+      title: "Leverage Accumulation",
+      labels: { acquiredCapital: "Acquired Capital", current: "Current" },
+    },
+    domain: {
+      number: "04",
+      slug: "Domain Expertise",
+      title: "Two Pillars of Knowledge",
+      description:
+        "単なるコーダーではなく「思想家」として、技術と人間社会の接点を設計する。",
+      intersection: {
+        formula: "Psychology × AI × Law",
+        result: "Unique Position",
+      },
+    },
+    tech: {
+      number: "05",
+      slug: "Technical Stack Spec",
+      title: "Capability Matrix",
+      labels: {
+        radarTitle: "Skill Radar",
+        barsTitle: "Proficiency Levels",
+      },
+      legend: [
+        { label: "Language", color: "var(--color-cyber-blue)" },
+        { label: "Framework", color: "var(--color-neon-emerald)" },
+        { label: "Theory", color: "var(--color-neon-purple)" },
+      ],
+    },
+    roadmap: {
+      number: "06",
+      slug: "Resource Request & Roadmap",
+      title: "Strategic Roadmap",
+      resourcePanel: {
+        title: "Resource Request",
+        subtitle: "ミッション達成に必要なリソース",
+      },
+      cta: {
+        label: "Schedule a Meeting",
+        href: "https://calendly.com",
+        subtext: "投資家・メンター・研究者の方はお気軽にご連絡ください",
+      },
+      footer: {
+        builtWith: "Built with React + Tailwind CSS + Framer Motion",
+      },
+    },
+  },
+};

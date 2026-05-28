@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { skills } from "../data/portfolioData";
+import { skills, siteConfig } from "../data/portfolioData";
 import RadarChart from "../components/RadarChart";
 
 function AnimatedBar({ name, level, delay }) {
@@ -50,7 +50,7 @@ export default function TechStackSpec() {
             viewport={{ once: true }}
             className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
           >
-            05 // Technical Stack Spec
+            {`${siteConfig.sections.tech.number} // ${siteConfig.sections.tech.slug}`}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -59,7 +59,7 @@ export default function TechStackSpec() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
           >
-            Capability Matrix
+            {siteConfig.sections.tech.title}
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -81,7 +81,7 @@ export default function TechStackSpec() {
             className="glass-card p-6 sm:p-8"
           >
             <h3 className="text-sm font-mono text-[var(--color-text-muted)] tracking-wider uppercase mb-6 text-center">
-              Skill Radar
+              {siteConfig.sections.tech.labels.radarTitle}
             </h3>
             <RadarChart />
           </motion.div>
@@ -95,7 +95,7 @@ export default function TechStackSpec() {
             className="glass-card p-6 sm:p-8"
           >
             <h3 className="text-sm font-mono text-[var(--color-text-muted)] tracking-wider uppercase mb-8 text-center">
-              Proficiency Levels
+              {siteConfig.sections.tech.labels.barsTitle}
             </h3>
             <div className="space-y-6">
               {skills.map((skill, i) => (
@@ -110,11 +110,7 @@ export default function TechStackSpec() {
 
             {/* Legend */}
             <div className="mt-8 pt-4 border-t border-[var(--color-border)] flex flex-wrap gap-4">
-              {[
-                { label: "Language", color: "var(--color-cyber-blue)" },
-                { label: "Framework", color: "var(--color-neon-emerald)" },
-                { label: "Theory", color: "var(--color-neon-purple)" },
-              ].map((item) => (
+              {siteConfig.sections.tech.legend.map((item) => (
                 <div key={item.label} className="flex items-center gap-2">
                   <span
                     className="w-2 h-2 rounded-full"

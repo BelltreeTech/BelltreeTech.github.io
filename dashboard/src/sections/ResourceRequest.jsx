@@ -9,7 +9,7 @@ import {
   Rocket,
   Star,
 } from "lucide-react";
-import { roadmap, resourceRequests, profile } from "../data/portfolioData";
+import { roadmap, resourceRequests, profile, siteConfig } from "../data/portfolioData";
 
 const iconMap = {
   server: Server,
@@ -33,7 +33,7 @@ export default function ResourceRequest() {
             viewport={{ once: true }}
             className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
           >
-            06 // Resource Request & Roadmap
+            {`${siteConfig.sections.roadmap.number} // ${siteConfig.sections.roadmap.slug}`}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ export default function ResourceRequest() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
           >
-            Strategic Roadmap
+            {siteConfig.sections.roadmap.title}
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -124,10 +124,10 @@ export default function ResourceRequest() {
           className="glow-border rounded-2xl p-6 sm:p-8 bg-[var(--color-bg-card)]"
         >
           <h3 className="text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] mb-2">
-            Resource Request
+            {siteConfig.sections.roadmap.resourcePanel.title}
           </h3>
           <p className="text-sm text-[var(--color-text-muted)] font-mono mb-8">
-            ミッション達成に必要なリソース
+            {siteConfig.sections.roadmap.resourcePanel.subtitle}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
@@ -173,16 +173,16 @@ export default function ResourceRequest() {
           {/* CTA */}
           <div className="text-center">
             <a
-              href="https://calendly.com"
+              href={siteConfig.sections.roadmap.cta.href}
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button text-base sm:text-lg"
             >
               <Calendar size={20} />
-              Schedule a Meeting
+              {siteConfig.sections.roadmap.cta.label}
             </a>
             <p className="mt-4 text-xs text-[var(--color-text-muted)] font-mono">
-              投資家・メンター・研究者の方はお気軽にご連絡ください
+              {siteConfig.sections.roadmap.cta.subtext}
             </p>
           </div>
         </motion.div>
@@ -199,7 +199,7 @@ export default function ResourceRequest() {
             © 2026 {profile.name}. All Rights Reserved.
           </p>
           <p className="text-[10px] font-mono text-[var(--color-text-muted)]/50 mt-1">
-            Built with React + Tailwind CSS + Framer Motion
+            {siteConfig.sections.roadmap.footer.builtWith}
           </p>
         </motion.footer>
       </div>

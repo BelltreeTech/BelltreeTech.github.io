@@ -12,14 +12,16 @@ export default function TypeWriter({ text, speed = 40, delay = 500, className = 
   }, [delay]);
 
   useEffect(() => {
-    if (!started) return;
+    if (!started || !text) return;
     if (idx.current >= text.length) {
       setDone(true);
       return;
     }
     const timer = setTimeout(() => {
-      setDisplayed((prev) => prev + text[idx.current]);
-      idx.current += 1;
+      if (idx.current < text.length) {
+        setDisplayed((prev) => prev + text.charAt(idx.current));
+        idx.current += 1;
+      }
     }, speed);
     return () => clearTimeout(timer);
   }, [started, displayed, text, speed]);

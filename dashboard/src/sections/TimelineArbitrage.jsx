@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import { timeline } from "../data/portfolioData";
+import { timeline, siteConfig } from "../data/portfolioData";
 
 const nodeVariants = {
   hidden: { opacity: 0, x: -30 },
@@ -25,7 +25,7 @@ export default function TimelineArbitrage() {
             viewport={{ once: true }}
             className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
           >
-            03 // Timeline of Arbitrage
+            {`${siteConfig.sections.timeline.number} // ${siteConfig.sections.timeline.slug}`}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export default function TimelineArbitrage() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
           >
-            Leverage Accumulation
+            {siteConfig.sections.timeline.title}
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -86,7 +86,7 @@ export default function TimelineArbitrage() {
                     </div>
                     {node.active && (
                       <span className="px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest rounded-full border border-[var(--color-neon-emerald)]/30 text-[var(--color-neon-emerald)] bg-[rgba(0,255,170,0.05)]">
-                        Current
+                        {siteConfig.sections.timeline.labels.current}
                       </span>
                     )}
                   </div>
@@ -96,7 +96,7 @@ export default function TimelineArbitrage() {
                     <div className="flex items-center gap-1.5 mb-2.5">
                       <Sparkles size={12} className="text-[var(--color-neon-emerald)]" />
                       <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-neon-emerald)]">
-                        Acquired Capital
+                        {siteConfig.sections.timeline.labels.acquiredCapital}
                       </span>
                     </div>
                     <ul className="space-y-1.5">

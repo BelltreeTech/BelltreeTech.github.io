@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import BottomDock from "./components/Sidebar";
 import ExecutiveSummary from "./sections/ExecutiveSummary";
@@ -7,6 +7,7 @@ import TimelineArbitrage from "./sections/TimelineArbitrage";
 import DomainExpertise from "./sections/DomainExpertise";
 import TechStackSpec from "./sections/TechStackSpec";
 import ResourceRequest from "./sections/ResourceRequest";
+import { siteConfig } from "./data/portfolioData";
 
 const sections = {
   executive: ExecutiveSummary,
@@ -26,6 +27,10 @@ const pageVariants = {
 export default function App() {
   const [active, setActive] = useState("executive");
   const ActiveSection = sections[active];
+
+  useEffect(() => {
+    document.title = siteConfig.meta.title;
+  }, []);
 
   return (
     <div className="relative min-h-screen">
