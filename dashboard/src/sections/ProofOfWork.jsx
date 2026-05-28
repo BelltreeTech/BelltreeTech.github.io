@@ -47,10 +47,10 @@ const cardVariants = {
 
 export default function ProofOfWork() {
   return (
-    <section className="relative px-6 sm:px-10 py-24 overflow-hidden">
+    <section className="relative px-8 sm:px-16 lg:px-24 py-28 overflow-hidden">
       <div className="absolute inset-0 dot-matrix opacity-30" />
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-16">
           <motion.span
@@ -66,7 +66,7 @@ export default function ProofOfWork() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
+            className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[var(--color-text-primary)]"
           >
             {siteConfig.sections.projects.title}
           </motion.h2>
@@ -85,13 +85,13 @@ export default function ProofOfWork() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 lg:gap-12"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
         >
           {projects.map((project) => (
             <motion.article
               key={project.id}
               variants={cardVariants}
-              className="glass-card p-7 sm:p-9 flex flex-col"
+              className="glass-card p-8 sm:p-12 flex flex-col"
             >
               {/* Status */}
               <div className="flex items-center justify-between mb-6">
@@ -123,28 +123,28 @@ export default function ProofOfWork() {
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-2xl sm:text-3xl font-bold text-[var(--color-text-primary)] mb-2 leading-tight">
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-text-primary)] mb-3 leading-tight">
                 {project.name}
               </h3>
-              <p className="text-sm font-mono text-[var(--color-cyber-blue)] mb-5">
+              <p className="text-base font-mono text-[var(--color-cyber-blue)] mb-6">
                 {project.tagline}
               </p>
 
               {/* Problem / Solution */}
-              <div className="space-y-5 mb-8 flex-1">
+              <div className="space-y-6 mb-10 flex-1">
                 <div>
-                  <span className="text-xs font-mono text-[var(--color-text-muted)] uppercase tracking-wider">
+                  <span className="text-sm font-mono text-[var(--color-text-muted)] uppercase tracking-wider">
                     {siteConfig.sections.projects.labels.problem}
                   </span>
-                  <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mt-2">
+                  <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-loose mt-3">
                     {project.problem}
                   </p>
                 </div>
                 <div>
-                  <span className="text-xs font-mono text-[var(--color-text-muted)] uppercase tracking-wider">
+                  <span className="text-sm font-mono text-[var(--color-text-muted)] uppercase tracking-wider">
                     {siteConfig.sections.projects.labels.solution}
                   </span>
-                  <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mt-2">
+                  <p className="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-loose mt-3">
                     {project.solution}
                   </p>
                 </div>
