@@ -39,21 +39,26 @@ export default function App() {
       {/* Noise Overlay */}
       <div className="noise-overlay" />
 
-      {/* Main Content — centered, bottom padding for dock clearance */}
-      <main className="min-h-screen pb-48">
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <ActiveSection />
-          </motion.div>
-        </AnimatePresence>
+      {/* Main Content — centered, removed pb-48 in favor of physical spacer */}
+      <main className="min-h-screen">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative">
+          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <ActiveSection />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* 👇 物理的な透明スペーサー。これで絶対にボトムドックと被らない 👇 */}
+          <div className="h-40 w-full pointer-events-none flex-shrink-0" aria-hidden="true" />
+
         </div>
       </main>
 
