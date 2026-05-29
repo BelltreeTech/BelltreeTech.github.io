@@ -3,9 +3,9 @@ export const profile = {
   name: "Shinri Suzuki",
   handle: "BelltreeTech",
   tagline: "Hybrid Architect — AI Implementation × Law & Psychology Domain",
-  affiliation: "慶應義塾大学 総合政策学 / 一般社団法人ウェルネステックラボ / Makers University U-18 第10期生",
+  affiliation: "慶應義塾大学 総合政策学部 / 一般社団法人ウェルネステックラボ/ 株式会社肌マッチ / Makers University U-18",
   statement:
-    " SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力。市場の空白地帯を独占するハイブリッド・アーキテクト。",
+    " SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力．市場の空白地帯を独占するハイブリッド・アーキテクト．",
   socials: {
     github: "https://github.com/BelltreeTech",
     linkedin: "https://www.linkedin.com/in/shinri-suzuki-605475312/",
@@ -20,9 +20,9 @@ export const projects = [
     name: "Medical AI Polaris",
     tagline: "FACS × LLM 統合メンタルケアAI",
     problem:
-      "既存のメンタルケアAIはAPI依存で精度・コストに課題。表情認識の学術的厳密性が欠如している。",
+      "既存のメンタルケアAIはAPI依存で精度・コストに課題．表情認識の学術的厳密性が欠如している．",
     solution:
-      "FACSコーディングとNumPyスクラッチ実装による独自深層学習モデルで、表情からの感情推定精度を最大化。",
+      "FACSコーディングとNumPyスクラッチ実装による独自深層学習モデルで，表情からの感情推定精度を最大化．",
     stack: ["Python", "PyTorch", "NumPy", "FACS", "Deep Learning"],
     metrics: [
       { label: "Model Accuracy", value: "98.5%", icon: "target" },
@@ -38,9 +38,9 @@ export const projects = [
     name: "ELSI Compliance Engine",
     tagline: "AI倫理・法規制チェックフレームワーク",
     problem:
-      "AI開発現場でELSI（倫理的・法的・社会的課題）のチェックが属人的かつ非体系的。",
+      "AI開発現場でELSI（倫理的・法的・社会的課題）のチェックが属人的かつ非体系的．",
     solution:
-      "法的要件をルールエンジン化し、AIシステムの開発プロセスに統合可能なコンプライアンスチェッカーを構築。",
+      "法的要件をルールエンジン化し，AIシステムの開発プロセスに統合可能なコンプライアンスチェッカーを構築．",
     stack: ["Python", "NLP", "Knowledge Graph", "FastAPI"],
     metrics: [
       { label: "Rule Coverage", value: "94%", icon: "shield" },
@@ -56,9 +56,9 @@ export const projects = [
     name: "Affective Computing SDK",
     tagline: "リアルタイム表情分析エンジン",
     problem:
-      "既存の表情認識APIはブラックボックスで、学術研究での再現性・透明性が確保できない。",
+      "既存の表情認識APIはブラックボックスで，学術研究での再現性・透明性が確保できない．",
     solution:
-      "FACS Action Unit検出をスクラッチ実装し、推論過程が透明なオープンソースSDKを提供。",
+      "FACS Action Unit検出をスクラッチ実装し，推論過程が透明なオープンソースSDKを提供．",
     stack: ["Python", "OpenCV", "NumPy", "ONNX"],
     metrics: [
       { label: "AU Detection", value: "96.2%", icon: "eye" },
@@ -74,12 +74,19 @@ export const projects = [
 export const timeline = [
   {
     year: "2026",
+    title: "明治大学 スマートメカトロニクス研究室 共同研究",
+    subtitle: "Coming soon...",
+    acquiredCapital: [
+    ],
+    active: true,
+    url: "https://weblab.t.u-tokyo.ac.jp/",
+  },
+  {
+    year: "2026",
     title: "東京大学 松尾・岩澤研究室 プログラム",
     subtitle: "GLOBAL CONSUMER INTELLIGENCE 2026 Summer / Deep Learning Basic 2026 Spring",
     acquiredCapital: [
-      "深層学習の数理的基盤とアルゴリズム実装力",
-      "大規模データセットを用いた実践的分析スキル",
-      "トップティアAI研究者・エンジニアとのネットワーク",
+      "Coming soon...",
     ],
     active: true,
     url: "https://weblab.t.u-tokyo.ac.jp/",
@@ -89,9 +96,7 @@ export const timeline = [
     title: "慶應義塾大学 SFC 入学",
     subtitle: "総合政策学部 総合政策学科",
     acquiredCapital: [
-      "AI社会実装のための法的・倫理的ガバナンス設計力",
-      "感情を理解するAIの心理学的検証アプローチ",
-      "アカデミアと実社会を接続する文理融合の知見",
+      "Coming soon...",
     ],
     active: true,
     url: "https://www.sfc.keio.ac.jp/",
@@ -99,7 +104,7 @@ export const timeline = [
   {
     year: "2025",
     title: "一般社団法人ウェルネス・テックラボ 設立",
-    subtitle: "代表理事 / 「心に届くAI」の社会実装",
+    subtitle: "代表理事 / CTOとして就任",
     acquiredCapital: [
       "法人設立・組織運営における起業家としての胆力",
       "多様な専門家(医療・教育等)を巻き込む巻き込み力",
@@ -110,7 +115,7 @@ export const timeline = [
   },
   {
     year: "2025",
-    title: "MAKERS UNIVERSITY U-18 第10期生 採択",
+    title: "MAKERS UNIVERSITY U-18の第10期生 採択",
     subtitle: "日本最高峰の次世代起業家育成プログラム",
     acquiredCapital: [
       "トップメンターによる事業解像度の引き上げ",
@@ -133,10 +138,10 @@ export const timeline = [
   },
   {
     year: "2023",
-    title: "慶應SFC 未来構想キャンプin鳥取 2023 修了",
+    title: "慶應SFC主催の未来構想キャンプin鳥取 2023 修了",
     subtitle: "XRとロボティクスで人々の健康を支える",
     acquiredCapital: [
-      "『つくる』から『届ける』へ、社会実装を前提とした技術視点",
+      "『つくる』から『届ける』へ，社会実装を前提とした技術視点",
       "医療現場のリアルなペインを引き出すヒアリング力",
       "先端技術をエンドユーザーに適応させるUI/UX設計",
     ],
@@ -144,12 +149,12 @@ export const timeline = [
   },
   {
     year: "2022",
-    title: "平均年齢32歳のハッカソンでリーダーを経験",
+    title: "平均年齢32歳のハッカソン/フェスでリーダーを経験",
     subtitle: "VRプロフェッショナルアカデミー 最年少入学",
     acquiredCapital: [
-      "社会人エンジニアと対等に議論・協働するコミュニケーション力",
-      "年齢の壁を『試作と実証データ』の成果で突破し信頼を得る力",
-      "課題抽出からXRプラン立案・デモ開発までを統括する統率力",
+      "現役シニアエンジニアと対等に議論・協働するコミュニケーション力",
+      "全体を俯瞰してそれぞれにタスクを振り分けるマネジメント力",
+      "課題発見からXRプラン立案・デモ開発までを統括する統率力",
     ],
     active: false,
   },
@@ -160,7 +165,7 @@ export const domains = {
     subtitle: "FACS & Affective Computing",
     icon: "brain",
     description:
-      "表情分析（FACS: Facial Action Coding System）を基盤とした感情認識技術。AIに「共感」を実装することで、孤独な入院患者の心に寄り添う。",
+      "表情分析（FACS: Facial Action Coding System）を基盤とした感情認識技術．AIに「共感」を実装することで，孤独な入院患者の心に寄り添う．",
     points: [
       "Facial Action Coding System (FACS) — 表情筋の動きをコード化",
       "Affective Computing — 感情の計算的モデリング",
@@ -173,7 +178,7 @@ export const domains = {
     subtitle: "ELSI & Responsible AI",
     icon: "scale",
     description:
-      "技術の独走を防ぎ、人が幸せになるための法・倫理的フレームワークを研究。AIの社会実装における倫理的・法的・社会的課題（ELSI）に取り組む。",
+      "技術の独走を防ぎ，人が幸せになるための法・倫理的フレームワークを研究．AIの社会実装における倫理的・法的・社会的課題（ELSI）に取り組む．",
     points: [
       "ELSI Framework — 倫理的・法的・社会的影響評価",
       "AI Safety — アラインメントと安全性の担保",
@@ -231,7 +236,7 @@ export const resourceRequests = [
   {
     title: "Compute Resources",
     subtitle: "GPU / Cloud Credits",
-    description: "大規模モデル学習のためのA100/H100 GPUクラスタ、またはクラウドクレジット",
+    description: "大規模モデル学習のためのA100/H100 GPUクラスタ，またはクラウドクレジット",
     icon: "server",
     priority: "HIGH",
   },
@@ -339,7 +344,7 @@ export const siteConfig = {
   meta: {
     title: "Shinri Suzuki — Hybrid Architect Portfolio",
     description:
-      "AI Implementation × Law & Psychology Domain. SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力。",
+      "AI Implementation × Law & Psychology Domain. SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力．",
   },
   nav: [
     { id: "executive", label: "Summary" },
@@ -377,7 +382,7 @@ export const siteConfig = {
       slug: "Third-Party Validation",
       title: "Awards & Press",
       description:
-        "第三者機関による客観的な評価。技術力とビジョンの社会的信頼性を証明する。",
+        "第三者機関による客観的な評価．技術力とビジョンの社会的信頼性を証明する．",
       labels: { award: "Award", press: "Press" },
     },
     domain: {
@@ -385,7 +390,7 @@ export const siteConfig = {
       slug: "Domain Expertise",
       title: "Two Pillars of Knowledge",
       description:
-        "単なるコーダーではなく「思想家」として、技術と人間社会の接点を設計する。",
+        "単なるコーダーではなく「思想家」として，技術と人間社会の接点を設計する．",
       intersection: {
         formula: "Psychology × AI × Law",
         result: "Unique Position",
