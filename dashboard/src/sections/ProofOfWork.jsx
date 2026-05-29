@@ -158,9 +158,9 @@ export default function ProofOfWork() {
                     <div key={m.label} className="metric-badge flex-1 min-w-[100px] p-3 sm:p-4">
                       <div className="flex items-center gap-2">
                         <Icon size={16} className="text-[var(--color-cyber-blue)]" />
-                        <span className="metric-value text-2xl sm:text-3xl">{m.value}</span>
+                        <span className="metric-value text-3xl sm:text-4xl font-black">{m.value}</span>
                       </div>
-                      <span className="metric-label text-[11px]">{m.label}</span>
+                      <span className="metric-label text-xs">{m.label}</span>
                     </div>
                   );
                 })}
