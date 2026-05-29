@@ -1,15 +1,8 @@
 import { motion } from "framer-motion";
 import { Sparkles, ExternalLink } from "lucide-react";
+import SectionHeader from "../components/ui/SectionHeader";
+import { slideInLeft } from "../utils/animations";
 import { timeline, siteConfig } from "../data/portfolioData";
-
-const nodeVariants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: (i) => ({
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.6, delay: i * 0.15, ease: [0.4, 0, 0.2, 1] },
-  }),
-};
 
 export default function TimelineArbitrage() {
   return (
@@ -17,33 +10,7 @@ export default function TimelineArbitrage() {
       <div className="absolute inset-0 grid-bg opacity-20" />
 
       <div className="relative z-10 max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="mb-14">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
-          >
-            {`${siteConfig.sections.timeline.number} // ${siteConfig.sections.timeline.slug}`}
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
-          >
-            {siteConfig.sections.timeline.title}
-          </motion.h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-20 h-0.5 bg-gradient-to-r from-[var(--color-cyber-blue)] to-transparent mt-4 origin-left"
-          />
-        </div>
+        <SectionHeader sectionKey="timeline" />
 
         {/* Vertical Timeline */}
         <div className="relative pl-10 sm:pl-14">
@@ -55,7 +22,13 @@ export default function TimelineArbitrage() {
               <motion.div
                 key={`${node.year}-${node.title}`}
                 custom={i}
-                variants={nodeVariants}
+                variants={{
+                  hidden: slideInLeft.hidden,
+                  visible: {
+                    ...slideInLeft.visible,
+                    transition: { duration: 0.5, delay: i * 0.15, ease: [0.4, 0, 0.2, 1] },
+                  },
+                }}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}

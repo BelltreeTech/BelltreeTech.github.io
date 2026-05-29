@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Trophy, Newspaper, Calendar, ExternalLink } from "lucide-react";
-import { validations, siteConfig } from "../data/portfolioData";
+import SectionHeader from "../components/ui/SectionHeader";
+import { staggerContainer, fadeInUp } from "../utils/animations";
+import { validations } from "../data/portfolioData";
 
 const typeConfig = {
   Award: {
@@ -17,70 +19,17 @@ const typeConfig = {
   },
 };
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
-  },
-};
-
-const sec = siteConfig.sections.validations;
-
 export default function Validations() {
   return (
     <section className="relative px-6 py-20 overflow-hidden">
       <div className="absolute inset-0 dot-matrix opacity-30 pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-14">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
-          >
-            {`${sec.number} // ${sec.slug}`}
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
-          >
-            {sec.title}
-          </motion.h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-20 h-0.5 bg-gradient-to-r from-[var(--color-neon-emerald)] to-transparent mt-4 origin-left"
-          />
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-[var(--color-text-secondary)] mt-4 max-w-2xl text-sm leading-relaxed"
-          >
-            {sec.description}
-          </motion.p>
-        </div>
+        <SectionHeader sectionKey="validations" />
 
         {/* Validation Cards */}
         <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -92,7 +41,7 @@ export default function Validations() {
             return (
               <motion.article
                 key={item.id}
-                variants={cardVariants}
+                variants={fadeInUp}
                 className="glass-card p-6 sm:p-7 relative overflow-hidden group hover:border-[var(--color-cyber-blue)] transition-all duration-500"
               >
                 {/* Top accent line */}
@@ -156,7 +105,7 @@ export default function Validations() {
                   </p>
                 )}
 
-                {/* Link (if any) */}
+                {/* Link */}
                 {item.link && (
                   <a
                     href={item.link}

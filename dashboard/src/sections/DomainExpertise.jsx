@@ -1,17 +1,9 @@
 import { motion } from "framer-motion";
 import { Brain, Scale, ChevronRight } from "lucide-react";
+import SectionHeader from "../components/ui/SectionHeader";
 import { domains, siteConfig } from "../data/portfolioData";
 
 const iconMap = { brain: Brain, scale: Scale };
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, delay: i * 0.2, ease: [0.4, 0, 0.2, 1] },
-  }),
-};
 
 export default function DomainExpertise() {
   const pillars = [domains.psychology, domains.governance];
@@ -21,42 +13,7 @@ export default function DomainExpertise() {
       <div className="absolute inset-0 dot-matrix opacity-20" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-14">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
-          >
-            {`${siteConfig.sections.domain.number} // ${siteConfig.sections.domain.slug}`}
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
-          >
-            {siteConfig.sections.domain.title}
-          </motion.h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-20 h-0.5 bg-gradient-to-r from-[var(--color-cyber-blue)] to-transparent mt-4 origin-left"
-          />
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-[var(--color-text-secondary)] mt-4 max-w-2xl text-sm leading-relaxed"
-          >
-            {siteConfig.sections.domain.description}
-          </motion.p>
-        </div>
+        <SectionHeader sectionKey="domain" />
 
         {/* Two Pillars */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -67,7 +24,14 @@ export default function DomainExpertise() {
               <motion.div
                 key={pillar.title}
                 custom={i}
-                variants={cardVariants}
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.7, delay: i * 0.2, ease: [0.4, 0, 0.2, 1] },
+                  },
+                }}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}

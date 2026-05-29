@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import SectionHeader from "../components/ui/SectionHeader";
 import { skills, siteConfig } from "../data/portfolioData";
 import RadarChart from "../components/RadarChart";
 
@@ -42,33 +43,7 @@ export default function TechStackSpec() {
       <div className="absolute inset-0 grid-bg opacity-20" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-14">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
-          >
-            {`${siteConfig.sections.tech.number} // ${siteConfig.sections.tech.slug}`}
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
-          >
-            {siteConfig.sections.tech.title}
-          </motion.h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-20 h-0.5 bg-gradient-to-r from-[var(--color-cyber-blue)] to-transparent mt-4 origin-left"
-          />
-        </div>
+        <SectionHeader sectionKey="tech" />
 
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">

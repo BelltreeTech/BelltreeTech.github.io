@@ -9,6 +9,7 @@ import {
   Rocket,
   Star,
 } from "lucide-react";
+import SectionHeader from "../components/ui/SectionHeader";
 import { roadmap, resourceRequests, profile, siteConfig } from "../data/portfolioData";
 
 const iconMap = {
@@ -25,33 +26,7 @@ export default function ResourceRequest() {
       <div className="absolute inset-0 dot-matrix opacity-20" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-14">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs font-mono text-[var(--color-text-muted)] tracking-[0.2em] uppercase block mb-3"
-          >
-            {`${siteConfig.sections.roadmap.number} // ${siteConfig.sections.roadmap.slug}`}
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-text-primary)]"
-          >
-            {siteConfig.sections.roadmap.title}
-          </motion.h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-20 h-0.5 bg-gradient-to-r from-[var(--color-cyber-blue)] to-transparent mt-4 origin-left"
-          />
-        </div>
+        <SectionHeader sectionKey="roadmap" />
 
         {/* Horizontal Roadmap */}
         <motion.div
