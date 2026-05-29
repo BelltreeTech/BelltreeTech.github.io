@@ -153,15 +153,6 @@ export const timeline = [
     ],
     active: false,
   },
-  {
-    year: "2007",
-    title: "誕生",
-    subtitle: "",
-    acquiredCapital: [
-
-    ],
-    active: false,
-  },
 ];
 export const domains = {
   psychology: {
@@ -194,10 +185,10 @@ export const domains = {
 
 export const skills = [
   { name: "Python", level: 92, category: "language" },
-  { name: "PyTorch", level: 85, category: "framework" },
-  { name: "NumPy / SciPy", level: 88, category: "framework" },
+  { name: "Artificial Intelligence (sklearn, PyTorch, TensorFlow, Scikit-learn)", level: 85, category: "framework" },
+  { name: "Data Science (Numpy, Pandas, Matplotlib)", level: 88, category: "framework" },
   { name: "Infrastructure", level: 65, category: "infra" },
-  { name: "Mathematical Statistics", level: 78, category: "theory" },
+  { name: "Mathematical  (Linear Algebra, Calculus, Statistics and Probability)", level: 78, category: "theory" },
   { name: "Deep Learning Theory", level: 82, category: "theory" },
 ];
 

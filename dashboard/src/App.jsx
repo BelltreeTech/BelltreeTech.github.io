@@ -41,7 +41,7 @@ export default function App() {
 
       {/* Main Content — centered, removed pb-48 in favor of physical spacer */}
       <main className="min-h-screen">
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full relative">
           
           <AnimatePresence mode="wait">
             <motion.div
