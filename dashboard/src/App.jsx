@@ -9,6 +9,7 @@ import DomainExpertise from "./sections/DomainExpertise";
 import TechStackSpec from "./sections/TechStackSpec";
 import ResourceRequest from "./sections/ResourceRequest";
 import { siteConfig } from "./data/portfolioData";
+import { pageVariants } from "./utils/animations";
 
 const sections = {
   executive: ExecutiveSummary,
@@ -20,11 +21,7 @@ const sections = {
   roadmap: ResourceRequest,
 };
 
-const pageVariants = {
-  initial: { opacity: 0, y: 20, filter: "blur(4px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-  exit: { opacity: 0, y: -10, filter: "blur(4px)" },
-};
+
 
 export default function App() {
   const [active, setActive] = useState("executive");
