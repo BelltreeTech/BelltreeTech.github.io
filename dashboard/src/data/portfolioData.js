@@ -3,9 +3,9 @@ export const profile = {
   name: "Shinri Suzuki",
   handle: "BelltreeTech",
   tagline: "Hybrid Architect — AI Implementation × Law & Psychology Domain",
-  affiliation: "慶應義塾大学 総合政策学部 / 一般社団法人ウェルネステックラボ/ 株式会社肌マッチ / Makers University U-18",
+  affiliation: "慶應義塾大学 総合政策学部 / 一般社団法人ウェルネステックラボ / 株式会社肌マッチ / Makers University U-18",
   statement:
-    " SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力．市場の空白地帯を独占するハイブリッド・アーキテクト．",
+    " SFCで学ぶ法と心理のドメイン知識 × 東大松尾研で培ったDL実装力．",
   socials: {
     github: "https://github.com/BelltreeTech",
     linkedin: "https://www.linkedin.com/in/shinri-suzuki-605475312/",
@@ -44,7 +44,7 @@ export const projects = [
     stack: ["Python", "NLP", "Knowledge Graph", "FastAPI"],
     metrics: [
       { label: "Rule Coverage", value: "94%", icon: "shield" },
-      { label: "Check Speed", value: "< 3s", icon: "zap" },
+      { label: "Check Speed", value: "<3s", icon: "zap" },
       { label: "Regulations", value: "120+", icon: "file-text" },
     ],
     github: "https://github.com/BelltreeTech",
