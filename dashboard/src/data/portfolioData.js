@@ -3,7 +3,7 @@ export const profile = {
   name: "Shinri Suzuki",
   handle: "BelltreeTech",
   tagline: "Hybrid Architect — AI Implementation × Law & Psychology Domain",
-  affiliation: "慶應義塾大学 総合政策学部 / 一般社団法人ウェルネステックラボ / 株式会社肌マッチ / Makers University U-18",
+  affiliation: `慶應義塾大学: 総合政策学部 \nMakers University U-18: 10th \n株式会社REQS:CTO \n株式会社肌マッチ: Co-founder \n一般社団法人ウェルネステックラボ: 代表理事 / CTO \n`,
   statement:
     " SFCで学ぶ法と心理のドメイン知識 × 東大松尾研で培ったDL実装力．",
   socials: {
@@ -127,7 +127,7 @@ export const timeline = [
   },
   {
     year: "2024",
-    title: "ITベンチャー3社でのエンジニアリング実装",
+    title: "ITベンチャー3社でのインターン経験",
     subtitle: "株式会社モシーモ / VR IMAGINATORS / VRデザイン研究所",
     acquiredCapital: [
       "対話AIと感情分析を統合する実務レベルの開発力",
@@ -149,7 +149,7 @@ export const timeline = [
   },
   {
     year: "2022",
-    title: "平均年齢32歳のハッカソン/フェスでリーダーを経験",
+    title: "平均年齢32歳のハッカソン/フェスでチームリーダーを経験",
     subtitle: "VRプロフェッショナルアカデミー 最年少入学",
     acquiredCapital: [
       "現役シニアエンジニアと対等に議論・協働するコミュニケーション力",
@@ -291,7 +291,7 @@ export const validations = [
     title: "第10回高校生国際シンポジウム 医療医学部門 最優秀賞",
     issuer: null,
     description: null,
-    link: null,
+    link: "https://www.glocal-academy.or.jp/",
   },
   {
     id: 5,
@@ -334,6 +334,33 @@ export const validations = [
     type: "Award",
     date: "2025-12",
     title: "サイエンスキャッスルワールド2025 アステラス製薬賞 / 優秀賞",
+    issuer: null,
+    description: null,
+    link: "https://lne.st/2025/12/15/scien-cecastle-world2025/",
+  },
+  {
+    id: 10,
+    type: "Press",
+    date: "2025-12",
+    title: "Larva06",
+    issuer: null,
+    description: null,
+    link: "https://larva06.com/2025/07/suzuki-shinri-interview",
+  },
+  {
+    id: 11,
+    type: "Press",
+    date: "2025-12",
+    title: "電波新聞",
+    issuer: null,
+    description: null,
+    link: "https://dempa-digital.com/article/695253",
+  },
+  {
+    id: 12,
+    type: "Press",
+    date: "2025-12",
+    title: "Steenz",
     issuer: null,
     description: null,
     link: null,

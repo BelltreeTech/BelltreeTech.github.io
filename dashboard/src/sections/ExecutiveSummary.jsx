@@ -72,7 +72,7 @@ export default function ExecutiveSummary() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] backdrop-blur-md"
           >
             <MapPin size={16} className="text-[var(--color-neon-purple)]" />
-            <span className="text-sm font-medium text-[var(--color-text-secondary)]">
+            <span className="text-sm font-medium text-[var(--color-text-secondary)] whitespace-pre-line">
               {profile.affiliation}
             </span>
           </motion.div>
