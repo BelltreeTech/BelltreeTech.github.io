@@ -7,7 +7,6 @@ import {
   Mail,
   ChevronDown,
 } from "lucide-react";
-import lightForm from "../assets/light-form.webp";
 import {
   profile,
   projects,
@@ -27,7 +26,7 @@ function SectionHeading({ number, en, title, children }) {
     <div className="section-heading">
       <div>
         <p className="eyebrow">
-          {number} — {en}
+          <span className="section-number">{number}</span><span>{en}</span>
         </p>
         <h2 tabIndex={-1}>{title}</h2>
       </div>
@@ -61,89 +60,84 @@ function Tags({ items }) {
   );
 }
 
+const focusItems = [
+  { id: "research", label: "研究", en: "CURRENT RESEARCH" },
+  { id: "internships", label: "経験", en: "IN THE FIELD" },
+  { id: "approach", label: "考え方", en: "ACROSS DISCIPLINES" },
+];
+
+function FocusFrame() {
+  const researchIntro = `${projects[0].summary.split("。")[0]}。`;
+  const introBreak = researchIntro.indexOf("、") + 1;
+  const [selected, setSelected] = useState("research");
+  const current = focusItems.find((item) => item.id === selected);
+  return (
+    <div className="focus-frame">
+      <div className="focus-controls" role="group" aria-label="焦点を切り替える">
+        {focusItems.map((item, index) => (
+          <button key={item.id} type="button" aria-pressed={selected === item.id}
+            aria-controls="focus-reading" onClick={() => setSelected(item.id)}>
+            <span aria-hidden="true">0{index + 1}</span>{item.label}
+          </button>
+        ))}
+      </div>
+      <div className="focus-reading" id="focus-reading" aria-live="polite" aria-atomic="true">
+        <p className="eyebrow">{current.en}</p>
+        {selected === "research" && <>
+          <h2 className="focus-title">{projects[0].name}<span className="focus-dot" aria-hidden="true">.</span></h2>
+          <p className="focus-tagline">{projects[0].tagline}</p>
+          <p className="focus-copy">{researchIntro.slice(0, introBreak)}<br />{researchIntro.slice(introBreak)}</p>
+        </>}
+        {selected === "internships" && <>
+          <h2 className="focus-title focus-title-ja">現場から、<br />考える。</h2>
+          <p className="focus-tagline">事業・技術・人をつなぐ経験</p>
+          <p className="focus-copy">企画開発、プロトタイプ開発、<br />学習支援。{internships.length}つのインターンの現場へ。</p>
+        </>}
+        {selected === "approach" && <>
+          <h2 className="focus-title focus-title-ja">分野の間に、<br />問いを置く。</h2>
+          <p className="focus-tagline">{profile.fields}</p>
+          <p className="focus-copy">{profile.thinking}<br />{profile.building}</p>
+        </>}
+        <a className="text-link focus-link" href={`#${selected}`}>
+          {selected === "research" ? "研究・制作を見る" : selected === "internships" ? "インターンでの経験へ" : "考え方・技術を見る"}
+          <ArrowDown size={22} aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export function Profile() {
   return (
-    <section
-      className="page-section profile-section"
-      id="profile"
-      aria-labelledby="profile-title"
-    >
-      <div className="section-topline">
-        <span>01 / PROFILE</span>
-        <span>FIELDNOTES ON FEELING</span>
-      </div>
+    <section className="page-section profile-section" id="profile" aria-labelledby="profile-title">
+      <div className="section-topline"><span>01 / PROFILE</span><span>OPEN VARIABLES</span></div>
       <div className="hero-grid">
         <div className="hero-intro">
           <p className="eyebrow">{profile.role.toUpperCase()}</p>
-          <h1 id="profile-title" tabIndex={-1}>
-            <span>感情から、</span>
-            <span>
-              問いをひらく<span className="hero-stop">。</span>
-            </span>
-          </h1>
-          <div className="hero-person">
-            <p className="hero-editorial" aria-hidden="true">
-              Fieldnotes
-              <br />
-              on feeling.
-            </p>
-            <div className="hero-identity">
-              <p className="hero-name">
-                {profile.nameJa}
-                <span>{profile.nameEn}</span>
-              </p>
-              <div>
-                <p className="affiliation">{profile.affiliation}</p>
-                <p className="hero-statement">{profile.fields}</p>
-              </div>
-            </div>
+          <h1 id="profile-title" tabIndex={-1}>{profile.nameJa}</h1>
+          <p className="identity-reading">{profile.nameEn}</p>
+          <div className="hero-identity">
+            <p className="hero-question">問い、つくり、{" "}<br />また問う。</p>
+            <p className="affiliation">{profile.affiliation}</p>
+            <p className="hero-fields">{profile.fields}</p>
           </div>
-          <p className="hero-description">{profile.statement}</p>
-          <a className="text-link hero-link" href="#research">
-            研究・制作を見る <ArrowDown size={18} aria-hidden="true" />
-          </a>
         </div>
-        <figure className="hero-art">
-          <img
-            src={lightForm}
-            alt=""
-            width="960"
-            height="1200"
-            fetchPriority="high"
-          />
-          <figcaption>
-            <span className="art-caption">光と透明性の習作</span>
-            <span className="focus-caption">
-              {profile.focus}
-              <span>感情を理解する、その先へ。</span>
-            </span>
-          </figcaption>
-        </figure>
+        <FocusFrame />
+      </div>
+      <div className="profile-context">
+        <div className="profile-statement">
+          <p className="eyebrow">{profile.focus}</p>
+          <p>{profile.statement}</p>
+        </div>
+        <div className="roles-block">
+          <h2>現在の活動</h2>
+          <ul>{profile.roles.map((item) => <li key={item.organization}>{item.organization}<span>{item.role}</span></li>)}</ul>
+        </div>
       </div>
       <div className="principles-strip">
-        <p>
-          <span>HOW I THINK</span>
-          {profile.thinking}
-        </p>
-        <p>
-          <span>HOW I BUILD</span>
-          {profile.building}
-        </p>
-        <p className="future-motto">
-          <strong>{profile.motto}</strong>
-          {profile.mottoJa}
-        </p>
-      </div>
-      <div className="roles-block">
-        <h2>現在の活動</h2>
-        <ul>
-          {profile.roles.map((item) => (
-            <li key={item.organization}>
-              <span>{item.organization}</span>
-              <span>{item.role}</span>
-            </li>
-          ))}
-        </ul>
+        <p><span>THINK</span><strong>{profile.thinking}</strong></p>
+        <p><span>BUILD</span><strong>{profile.building}</strong></p>
+        <p className="future-motto"><strong>{profile.motto}</strong><span>{profile.mottoJa}</span></p>
       </div>
     </section>
   );
@@ -171,18 +165,13 @@ export function Research() {
             </div>
             <div className="project-overview">
               <div className="project-title-block">
-                <h3>
-                  {project.name}
-                  <span className="project-star" aria-hidden="true">
-                    ＊
-                  </span>
-                </h3>
+                <h3>{project.name}</h3>
                 <p className="project-tagline">{project.tagline}</p>
               </div>
               <p className="project-summary">{project.summary}</p>
             </div>
             <Tags items={project.stack} />
-            <details className="project-detail" id={project.id}>
+            <details className="project-detail" id={project.id} open>
               <summary>
                 <span>{project.name} の詳細</span>
                 <Plus size={18} aria-hidden="true" />
@@ -244,7 +233,8 @@ export function Internships() {
                   <li key={task}>{task}</li>
                 ))}
               </ul>
-              <details className="experience-detail" id={item.id}>
+            </div>
+            <details className="experience-detail" id={item.id} open>
                 <summary>
                   <span>{item.organization} での学び</span>
                   <Plus size={18} aria-hidden="true" />
@@ -254,8 +244,7 @@ export function Internships() {
                     <p key={learning}>{learning}</p>
                   ))}
                 </div>
-              </details>
-            </div>
+            </details>
           </article>
         ))}
       </div>
@@ -384,11 +373,12 @@ export function Achievements() {
         <h3 className="subsection-title">メディア掲載</h3>
         <div className="media-grid">
           {media.map((item) => (
-            <article className="media-item" key={item.id}>
+            <article className="media-item" key={item.id} id={item.id}>
               <p className="minor-label">
                 <time dateTime={item.date}>{item.dateLabel}</time>
               </p>
               <h4>{item.title}</h4>
+              <p className="media-result">{item.result}</p>
               <p>{item.description}</p>
               {item.links.map((link) => (
                 <ExternalLink
@@ -419,6 +409,11 @@ export function Approach() {
     >
       <SectionHeading number="05" en="APPROACH & SKILLS" title="考え方・技術">
         仕組みを基礎から理解し、手を動かして考える。分野の境界を越えて問いを育てます。
+        <span className="approach-principle">
+          <span>{profile.thinking}</span>
+          <ArrowRight size={18} aria-hidden="true" />
+          <span>{profile.building}</span>
+        </span>
       </SectionHeading>
       <div className="domain-grid">
         {domains.map((item, index) => (
@@ -448,7 +443,7 @@ export function Approach() {
       <div className="activity-block">
         <h3 className="subsection-title">学びと活動の歩み</h3>
         {activities.map((item) => (
-          <article className="activity-row" key={item.id}>
+          <article className="activity-row" key={item.id} id={item.id}>
             <div>
               {item.date && item.dateLabel && (
                 <time dateTime={item.date}>{item.dateLabel}</time>
@@ -466,7 +461,7 @@ export function Approach() {
         <h3 className="subsection-title">これからの目標</h3>
         <div className="roadmap-grid">
           {roadmap.map((item) => (
-            <article key={item.id}>
+            <article key={item.id} id={item.id}>
               <p className="eyebrow">{item.period}</p>
               <h4>{item.title}</h4>
               <p>{item.description}</p>

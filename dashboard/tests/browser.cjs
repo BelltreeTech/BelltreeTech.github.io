@@ -148,44 +148,63 @@ async function bodyText(page) {
 }
 async function checkReadingLayout(page, label) {
   await page.evaluate(() => document.fonts.ready);
-  const reading = await page.evaluate(() => {
-    const caption = document
-      .querySelector(".hero-art figcaption")
-      .getBoundingClientRect();
-    const description = document
-      .querySelector(".hero-description")
-      .getBoundingClientRect();
-    return {
-      overlap:
-        Math.min(caption.right, description.right) -
-          Math.max(caption.left, description.left) >
-          1 &&
-        Math.min(caption.bottom, description.bottom) -
-          Math.max(caption.top, description.top) >
-          1,
-      headingFontLoaded: [...document.fonts].some(
-        (font) =>
-          font.family === "Portfolio Mincho" && font.status === "loaded",
-      ),
-      artLoaded: document.querySelector(".hero-art img").naturalWidth > 0,
-    };
-  });
-  assert.equal(
-    reading.overlap,
-    false,
-    `${label}: decorative caption never overlaps the profile text`,
-  );
-  assert.equal(
-    reading.headingFontLoaded,
-    true,
-    `${label}: self-hosted Japanese heading font loaded`,
-  );
-  assert.equal(
-    reading.artLoaded,
-    true,
-    `${label}: selected abstract artwork loaded`,
-  );
+  const intro = page.locator("#profile .hero-intro");
+  const frame = page.locator("#profile .focus-frame");
+  const controls = frame.getByRole("group", { name: "焦点を切り替える", exact: true });
+  const panel = frame.locator("#focus-reading");
+  for (const [element, name] of [[intro, "profile introduction"], [frame, "focus frame"], [panel, "focus reading"]]) {
+    assert.equal(await element.count(), 1, `${label}: one ${name}`);
+    assert.equal(await element.isVisible(), true, `${label}: ${name} is rendered`);
+  }
+  assert.match(await intro.locator("#profile-title").innerText(), /鈴木\s*真理/, `${label}: verified name is readable`);
+  assert.match(await intro.locator(".affiliation").innerText(), /慶應義塾大学\s*総合政策学部/, `${label}: verified affiliation is readable`);
+  assert.match(await intro.locator(".hero-fields").innerText(), /情報科学\s*×\s*心理学\s*×\s*法律・倫理/, `${label}: public research fields are readable`);
+
+  const font = await intro.locator("h1").evaluate((heading) => ({
+    firstFamily: getComputedStyle(heading).fontFamily.split(",")[0].trim().replace(/^['"]|['"]$/g, ""),
+    loaded: [...document.fonts].some((face) => face.family.replace(/^['"]|['"]$/g, "") === "Inter Variable" && face.status === "loaded"),
+    available: document.fonts.check('650 16px "Inter Variable"', "Polaris"),
+  }));
+  assert.equal(font.firstFamily, "Inter Variable", `${label}: intended interface font is configured`);
+  assert.equal(font.loaded && font.available, true, `${label}: configured Inter face is loaded and available`);
+
+  const states = [
+    { button: "研究", ready: "Polaris", href: "#research", content: [/Polaris/, /入院中の中高生/, /お悩み相談AI/] },
+    { button: "経験", ready: "3つのインターン", href: "#internships", content: [/3つのインターン/, /プロトタイプ開発/] },
+    { button: "考え方", ready: "From first principles", href: "#approach", content: [/情報科学\s*×\s*心理学\s*×\s*法律・倫理/, /From first principles/, /From scratch/] },
+  ];
+  assert.equal(await controls.getByRole("button").count(), states.length, `${label}: three focus controls`);
+  assert.equal(await panel.getAttribute("aria-live"), "polite", `${label}: focus changes are announced politely`);
+  assert.equal(await panel.getAttribute("aria-atomic"), "true", `${label}: focus reading is announced together`);
+  assert.equal(await controls.getByRole("button", { name: "研究", exact: true }).getAttribute("aria-pressed"), "true", `${label}: research is the initial focus`);
+
+  for (const state of states) {
+    const button = controls.getByRole("button", { name: state.button, exact: true });
+    assert.equal(await button.getAttribute("aria-controls"), "focus-reading", `${label}/${state.button}: control names its reading area`);
+    await button.click();
+    await page.waitForFunction((text) => document.querySelector("#focus-reading")?.innerText.includes(text), state.ready);
+    assert.equal(await button.getAttribute("aria-pressed"), "true", `${label}/${state.button}: selected control is announced`);
+    assert.equal(await controls.locator('button[aria-pressed="true"]').count(), 1, `${label}/${state.button}: one selected focus`);
+    const text = await panel.innerText();
+    for (const expected of state.content) assert.match(text, expected, `${label}/${state.button}: correct public focus content`);
+    assertCorrectedPublicContent(await panel.textContent(), `${label}/${state.button}: focus content`);
+    const link = panel.locator("a[href]");
+    assert.equal(await link.count(), 1, `${label}/${state.button}: one onward action`);
+    assert.equal(await link.getAttribute("href"), state.href, `${label}/${state.button}: onward action reaches its matching section`);
+    const bounds = await page.evaluate(() => {
+      const intro = document.querySelector("#profile .hero-intro").getBoundingClientRect();
+      const frame = document.querySelector("#profile .focus-frame").getBoundingClientRect();
+      return Math.min(frame.right, intro.right) - Math.max(frame.left, intro.left) > 1 &&
+        Math.min(frame.bottom, intro.bottom) - Math.max(frame.top, intro.top) > 1;
+    });
+    assert.equal(bounds, false, `${label}/${state.button}: introduction and reading surface never overlap`);
+    assertLayout(await inspectLayout(page), `${label}/${state.button}`);
+  }
+  // Keep subsequent content-parity checks in the initial research state.
+  await controls.getByRole("button", { name: "研究", exact: true }).click();
+  await page.waitForFunction(() => document.querySelector("#focus-reading")?.innerText.includes("Polaris"));
 }
+
 async function checkCorrectionStructure(page) {
   assert.equal(
     await page.locator("#research article").count(),
