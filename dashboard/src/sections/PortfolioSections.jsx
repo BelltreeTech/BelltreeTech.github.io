@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { ArrowUpRight, ArrowRight, ArrowDown, Plus, Mail } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  ArrowDown,
+  Plus,
+  Mail,
+  ChevronDown,
+} from "lucide-react";
+import lightForm from "../assets/light-form.webp";
 import {
   profile,
   projects,
@@ -61,48 +69,56 @@ export function Profile() {
       aria-labelledby="profile-title"
     >
       <div className="section-topline">
-        <span>PORTFOLIO</span>
-        <span>01 — PROFILE</span>
+        <span>01 / PROFILE</span>
+        <span>FIELDNOTES ON FEELING</span>
       </div>
       <div className="hero-grid">
         <div className="hero-intro">
           <p className="eyebrow">{profile.role.toUpperCase()}</p>
           <h1 id="profile-title" tabIndex={-1}>
-            {profile.nameJa}
+            <span>感情から、</span>
             <span>
-              {profile.nameEn.split(" ").map((part) => (
-                <span key={part}>{part} </span>
-              ))}
+              問いをひらく<span className="hero-stop">。</span>
             </span>
           </h1>
-          <p className="affiliation">{profile.affiliation}</p>
-          <p className="hero-statement">{profile.fields}</p>
+          <div className="hero-person">
+            <p className="hero-editorial" aria-hidden="true">
+              Fieldnotes
+              <br />
+              on feeling.
+            </p>
+            <div className="hero-identity">
+              <p className="hero-name">
+                {profile.nameJa}
+                <span>{profile.nameEn}</span>
+              </p>
+              <div>
+                <p className="affiliation">{profile.affiliation}</p>
+                <p className="hero-statement">{profile.fields}</p>
+              </div>
+            </div>
+          </div>
           <p className="hero-description">{profile.statement}</p>
-          <a className="text-link" href="#research">
-            研究・制作を見る <ArrowRight size={18} aria-hidden="true" />
+          <a className="text-link hero-link" href="#research">
+            研究・制作を見る <ArrowDown size={18} aria-hidden="true" />
           </a>
         </div>
-        <div className="focus-panel">
-          <div className="focus-heading">
-            <span className="eyebrow">CURRENT FOCUS</span>
-            <span className="focus-dot" aria-hidden="true" />
-          </div>
-          <h2>
-            {profile.focus}
-            <span>感情を理解する、その先へ。</span>
-          </h2>
-          <div className="future-mark" aria-hidden="true">
-            [<span>＋</span>]
-          </div>
-          <div className="focus-footnote">
-            <span>
-              {profile.fieldsEn.split(" × ").map((part) => (
-                <span key={part}>{part}</span>
-              ))}
+        <figure className="hero-art">
+          <img
+            src={lightForm}
+            alt=""
+            width="960"
+            height="1200"
+            fetchPriority="high"
+          />
+          <figcaption>
+            <span className="art-caption">光と透明性の習作</span>
+            <span className="focus-caption">
+              {profile.focus}
+              <span>感情を理解する、その先へ。</span>
             </span>
-            <ArrowDown size={22} aria-hidden="true" />
-          </div>
-        </div>
+          </figcaption>
+        </figure>
       </div>
       <div className="principles-strip">
         <p>
@@ -154,8 +170,13 @@ export function Research() {
               <span className="status-label">{project.status}</span>
             </div>
             <div className="project-overview">
-              <div>
-                <h3>{project.name}</h3>
+              <div className="project-title-block">
+                <h3>
+                  {project.name}
+                  <span className="project-star" aria-hidden="true">
+                    ＊
+                  </span>
+                </h3>
                 <p className="project-tagline">{project.tagline}</p>
               </div>
               <p className="project-summary">{project.summary}</p>
@@ -282,18 +303,25 @@ export function Achievements() {
       <div className="achievements-toolbar">
         <label htmlFor="achievement-category">
           表示する実績の区分
-          <select
-            id="achievement-category"
-            value={category}
-            onChange={(event) => setCategory(event.target.value)}
-          >
-            <option value="all">すべての区分</option>
-            {categories.map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
+          <span className="select-wrap">
+            <select
+              id="achievement-category"
+              value={category}
+              onChange={(event) => setCategory(event.target.value)}
+            >
+              <option value="all">すべての区分</option>
+              {categories.map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              size={16}
+              className="select-chevron"
+              aria-hidden="true"
+            />
+          </span>
         </label>
         <p aria-live="polite">{shown.length}件の活動記録</p>
       </div>
@@ -457,7 +485,17 @@ export function Contact() {
       id="contact"
       aria-label="連絡先"
     >
-      <SectionHeading number="06" en="CONTACT" title="次の問いを、一緒に。" />
+      <SectionHeading
+        number="06"
+        en="CONTACT"
+        title={
+          <>
+            次の問いを、
+            <wbr />
+            <span className="keep-phrase">一緒に。</span>
+          </>
+        }
+      />
       <div className="contact-grid">
         <div>
           <p className="contact-invitation">{contact.invitation}</p>

@@ -134,23 +134,119 @@ async function openEveryDetail(page) {
   return count;
 }
 async function bodyText(page) {
-  return (await page.locator("main").innerText()).replace(/\s+/g, " ").trim();
+  // WebKit includes native select options in desktop innerText but omits them
+  // at mobile widths. Their labels, values and filter results are tested below;
+  // compare the surrounding factual copy independently of that UI serialization.
+  const copy = await page.locator("main").evaluate((main) => {
+    const label = main.querySelector('label[for="achievement-category"]');
+    return main.innerText.replace(
+      label.innerText,
+      label.firstChild.textContent,
+    );
+  });
+  return copy.replace(/\s+/g, " ").trim();
+}
+async function checkReadingLayout(page, label) {
+  await page.evaluate(() => document.fonts.ready);
+  const reading = await page.evaluate(() => {
+    const caption = document
+      .querySelector(".hero-art figcaption")
+      .getBoundingClientRect();
+    const description = document
+      .querySelector(".hero-description")
+      .getBoundingClientRect();
+    return {
+      overlap:
+        Math.min(caption.right, description.right) -
+          Math.max(caption.left, description.left) >
+          1 &&
+        Math.min(caption.bottom, description.bottom) -
+          Math.max(caption.top, description.top) >
+          1,
+      headingFontLoaded: [...document.fonts].some(
+        (font) =>
+          font.family === "Portfolio Mincho" && font.status === "loaded",
+      ),
+      artLoaded: document.querySelector(".hero-art img").naturalWidth > 0,
+    };
+  });
+  assert.equal(
+    reading.overlap,
+    false,
+    `${label}: decorative caption never overlaps the profile text`,
+  );
+  assert.equal(
+    reading.headingFontLoaded,
+    true,
+    `${label}: self-hosted Japanese heading font loaded`,
+  );
+  assert.equal(
+    reading.artLoaded,
+    true,
+    `${label}: selected abstract artwork loaded`,
+  );
 }
 async function checkCorrectionStructure(page) {
-  assert.equal(await page.locator("#research article").count(), 1, "only one project card remains");
-  assert.equal(await page.locator("#research #polaris").count(), 1, "Polaris remains reachable");
-  assert.equal(await page.locator("#internships article").count(), 3, "all three internships remain");
-  assert.equal(await page.locator("#achievements details").count(), 9, "nine confirmed achievement records remain");
-  assert.equal(await page.locator("main details").count(), 13, "corrected detail count");
-  assert.equal(await page.locator(".roles-block li").count(), 1, "only the confirmed current role is displayed");
-  assert.equal(await page.locator("#contact .social-links a").count(), 3, "three confirmed SNS links remain");
-  assert.equal(await page.locator(".activity-row").count(), 3, "only three confirmed activity entries remain");
+  assert.equal(
+    await page.locator("#research article").count(),
+    1,
+    "only one project card remains",
+  );
+  assert.equal(
+    await page.locator("#research #polaris").count(),
+    1,
+    "Polaris remains reachable",
+  );
+  assert.equal(
+    await page.locator("#internships article").count(),
+    3,
+    "all three internships remain",
+  );
+  assert.equal(
+    await page.locator("#achievements details").count(),
+    9,
+    "nine confirmed achievement records remain",
+  );
+  assert.equal(
+    await page.locator("main details").count(),
+    13,
+    "corrected detail count",
+  );
+  assert.equal(
+    await page.locator(".roles-block li").count(),
+    1,
+    "only the confirmed current role is displayed",
+  );
+  assert.equal(
+    await page.locator("#contact .social-links a").count(),
+    3,
+    "three confirmed SNS links remain",
+  );
+  assert.equal(
+    await page.locator(".activity-row").count(),
+    3,
+    "only three confirmed activity entries remain",
+  );
   const vrExperience = page.locator(".activity-row").filter({
-    has: page.getByRole("heading", { name: "VRプロフェッショナルアカデミー", exact: true }),
+    has: page.getByRole("heading", {
+      name: "VRプロフェッショナルアカデミー",
+      exact: true,
+    }),
   });
-  assert.equal(await vrExperience.count(), 1, "confirmed VR experience is retained");
-  assert.equal(await vrExperience.locator("time").count(), 0, "VR experience has no invented year");
-  assertCorrectedPublicContent(await page.locator("main").textContent(), "rendered and collapsed public content");
+  assert.equal(
+    await vrExperience.count(),
+    1,
+    "confirmed VR experience is retained",
+  );
+  assert.equal(
+    await vrExperience.locator("time").count(),
+    0,
+    "VR experience has no invented year",
+  );
+  assertCorrectedPublicContent(
+    await page.locator("main").textContent(),
+    "rendered and collapsed public content",
+  );
   assert.equal(
     await page.locator('a[href*="linkedin.com"]').count(),
     0,
@@ -289,14 +385,12 @@ async function verifyFilter(page) {
     exact: true,
   });
   assert.equal(await select.count(), 1, "one accessible category filter");
-  const options = await select
-    .locator("option")
-    .evaluateAll((elements) =>
-      elements.map((element) => ({
-        value: element.value,
-        text: element.textContent,
-      })),
-    );
+  const options = await select.locator("option").evaluateAll((elements) =>
+    elements.map((element) => ({
+      value: element.value,
+      text: element.textContent,
+    })),
+  );
   const expectedCounts = {
     all: 9,
     award: 5,
@@ -318,7 +412,11 @@ async function verifyFilter(page) {
     const categories = await categorized.evaluateAll((elements) =>
       elements.map((element) => element.dataset.category),
     );
-    assert.equal(categories.length, expectedCounts[option.value], `filter ${option.value} has the confirmed record count`);
+    assert.equal(
+      categories.length,
+      expectedCounts[option.value],
+      `filter ${option.value} has the confirmed record count`,
+    );
     if (option.value !== "all")
       assert.ok(
         categories.every((category) => category === option.value),
@@ -333,11 +431,21 @@ async function verifyFilter(page) {
 }
 
 async function verifyWithdrawnHashes(page, width) {
-  const withdrawnIds = ["elsi", "affective-sdk", "sfc-camp-2023", "matsuo-programs", "meiji-research"];
+  const withdrawnIds = [
+    "elsi",
+    "affective-sdk",
+    "sfc-camp-2023",
+    "matsuo-programs",
+    "meiji-research",
+  ];
   for (const id of withdrawnIds) {
     await page.goto(`${baseURL}#${id}`, { waitUntil: "networkidle" });
     await page.locator("#contact").waitFor({ state: "attached" });
-    assert.equal(await page.locator(`[id="${id}"]`).count(), 0, `${id}: removed record is not recreated`);
+    assert.equal(
+      await page.locator(`[id="${id}"]`).count(),
+      0,
+      `${id}: removed record is not recreated`,
+    );
     await checkCorrectionStructure(page);
     await page.reload({ waitUntil: "networkidle" });
     await checkCorrectionStructure(page);
@@ -387,6 +495,7 @@ async function verifyWithdrawnHashes(page, width) {
         await page.goto(baseURL, { waitUntil: "networkidle" });
         await page.locator("#contact").waitFor({ state: "attached" });
         await checkCorrectionStructure(page);
+        await checkReadingLayout(page, `${name}/${width}`);
         const assets = await page
           .locator('script[src],link[rel="stylesheet"]')
           .evaluateAll((elements) =>
@@ -435,7 +544,9 @@ async function verifyWithdrawnHashes(page, width) {
           ),
         };
         const smallPrimaryTargets = await page
-          .locator("button, summary, select, #primary-navigation a, .social-links a, .contact-email")
+          .locator(
+            "button, summary, select, #primary-navigation a, .social-links a, .contact-email",
+          )
           .evaluateAll((elements) =>
             elements
               .filter(
@@ -633,6 +744,7 @@ async function verifyWithdrawnHashes(page, width) {
           });
           const zoomLayout = await inspectLayout(page);
           assertLayout(zoomLayout, `${name}/${width}/200pct-text`);
+          await checkReadingLayout(page, `${name}/${width}/200pct-text`);
           await screenshot(page, {
             path: path.join(outputDir, `${name}-${width}-text200.png`),
             fullPage: true,
@@ -650,6 +762,7 @@ async function verifyWithdrawnHashes(page, width) {
           await page.waitForTimeout(80);
           const zoomLayout = await inspectLayout(page);
           assertLayout(zoomLayout, `${name}/${width}/200pct-text`);
+          await checkReadingLayout(page, `${name}/${width}/200pct-text`);
           await screenshot(page, {
             path: path.join(outputDir, `${name}-${width}-text200.png`),
             fullPage: true,

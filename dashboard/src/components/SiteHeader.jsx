@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { profile, contact } from "../data/portfolioData";
+import { Menu, X } from "lucide-react";
+import { profile } from "../data/portfolioData";
 
 const navigation = [
   { id: "profile", label: "プロフィール", en: "Profile" },
@@ -11,7 +11,7 @@ const navigation = [
   { id: "contact", label: "連絡先", en: "Contact" },
 ];
 
-export default function Sidebar({ active }) {
+export default function SiteHeader({ active }) {
   const [open, setOpen] = useState(false);
   const menuButton = useRef(null);
   const header = useRef(null);
@@ -68,7 +68,11 @@ export default function Sidebar({ active }) {
       onBlur={(event) => {
         // WebKit reports null before a pointer-activated link's click fires.
         // Outside pointer activation is handled separately without hiding that link.
-        if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+        if (
+          event.relatedTarget &&
+          !event.currentTarget.contains(event.relatedTarget)
+        )
+          setOpen(false);
       }}
     >
       <a
@@ -78,11 +82,11 @@ export default function Sidebar({ active }) {
         aria-label="鈴木真理 プロフィール"
       >
         <span className="brand-mark" aria-hidden="true">
-          s.
+          [ ]
         </span>
         <span>
-          {profile.nameEn}
-          <small>{profile.role}</small>
+          {profile.nameJa}
+          <small>{profile.nameEn}</small>
         </span>
       </a>
       <button
@@ -127,17 +131,6 @@ export default function Sidebar({ active }) {
           </a>
         ))}
       </nav>
-      <div className="sidebar-footer">
-        <p>
-          情報科学から、
-          <br />
-          人と社会へ。
-        </p>
-        <a href={`mailto:${contact.email}`} className="sidebar-contact">
-          メールで連絡する <ArrowUpRight size={16} aria-hidden="true" />
-        </a>
-        <small>SHINRI SUZUKI © 2026</small>
-      </div>
     </header>
   );
 }

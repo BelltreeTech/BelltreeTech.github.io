@@ -11,10 +11,10 @@ test("The static build contains no original PDFs, evidence notes or source files
   assert.ok(files.includes("favicon.svg"));
   assert.doesNotMatch(
     files.join("\n"),
-    /Database|\.pdf$|content-evidence|\.map$|\.jsx$|\.md$/m,
+    /Database|local-review|artifacts|prototypes|verification|\.pdf$|content-evidence|\.map$|\.jsx$|\.md$/m,
   );
 });
-test("Initial HTML metadata is in Japanese and matches the business-card brand", async () => {
+test("Initial HTML metadata is in Japanese and preserves the verified identity", async () => {
   const html = await readFile(
     new URL("../dist/index.html", import.meta.url),
     "utf8",
@@ -27,7 +27,7 @@ test("Initial HTML metadata is in Japanese and matches the business-card brand",
   assert.match(html, /og:description/);
   assert.match(html, /https:\/\/belltreetech.github.io\//);
   assert.match(html, /mailto:shinri.suzuki@keio.jp/);
-  assert.doesNotMatch(html, /Hybrid Architect|#060608|vite.svg/);
+  assert.doesNotMatch(html, /Hybrid Architect|vite.svg/);
 });
 test("Every built asset reference resolves inside dist", async () => {
   const html = await readFile(
@@ -41,7 +41,9 @@ test("Every built asset reference resolves inside dist", async () => {
 });
 
 test("All distributed text excludes withdrawn projects, unconfirmed claims and private evidence", async () => {
-  const textFiles = files.filter((file) => /\.(?:html|js|css|json|svg|map)$/i.test(file));
+  const textFiles = files.filter((file) =>
+    /\.(?:html|js|css|json|svg|map)$/i.test(file),
+  );
   assert.ok(textFiles.some((file) => file.endsWith(".js")));
   for (const file of textFiles) {
     const text = await readFile(

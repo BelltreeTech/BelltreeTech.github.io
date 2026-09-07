@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Sidebar from "./components/Sidebar";
+import SiteHeader from "./components/SiteHeader";
 import {
   Profile,
   Research,
@@ -91,7 +91,7 @@ export default function App() {
         本文へ移動
       </a>
       <div className="portfolio-shell">
-        <Sidebar active={active} />
+        <SiteHeader active={active} />
         <main id="main-content" tabIndex={-1}>
           <Profile />
           <Research />
