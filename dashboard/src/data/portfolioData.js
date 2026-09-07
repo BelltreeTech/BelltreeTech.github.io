@@ -1,458 +1,399 @@
-// Portfolio Data — Single Source of Truth
+// Shared public content for every viewport. Evidence and release decisions stay outside the published app.
 export const profile = {
+  nameJa: "鈴木 真理",
   name: "Shinri Suzuki",
+  nameEn: "SHINRI SUZUKI",
   handle: "BelltreeTech",
-  tagline: "Hybrid Architect — AI Implementation × Law & Psychology Domain",
-  affiliation: `慶應義塾大学: 総合政策学部 \nMakers University U-18: 10th \n株式会社REQS:CTO \n株式会社肌マッチ: Co-founder \n一般社団法人ウェルネステックラボ: 代表理事 / CTO \n`,
+  role: "Researcher & Developer",
+  affiliation: "慶應義塾大学 総合政策学部",
+  fields: "情報科学 × 心理学 × 法律・倫理",
+  fieldsEn: "Computer Science × Psychology × Law & Ethics",
+  focus: "Emotion-Aware AI",
+  thinking: "From first principles",
+  building: "From scratch",
+  motto: "Future = [ ]",
+  mottoJa: "無色透明なら何色にもなれる",
   statement:
-    " SFCで学ぶ法と心理のドメイン知識 × 東大松尾研で培ったDL実装力．",
-  socials: {
-    github: "https://github.com/BelltreeTech",
-    linkedin: "https://www.linkedin.com/in/shinri-suzuki-605475312/",
-    x: "https://x.com/BelltreeTech82",
-    qiita: "https://qiita.com/BelltreeTech",
-  },
+    "人の感情や背景を理解するAIを、技術と人間の両側から考える。情報科学・心理学・法律と倫理の接点を探り、研究を社会につながる形へ育てていきます。",
+  roles: [
+    {
+      organization: "一般社団法人ウェルネステックラボ",
+      role: "代表理事 / CTO",
+    },
+  ],
+  socials: [
+    { label: "GitHub", url: "https://github.com/BelltreeTech" },
+    { label: "X", url: "https://x.com/BelltreeTech82" },
+    { label: "Qiita", url: "https://qiita.com/BelltreeTech" },
+  ],
 };
 
 export const projects = [
   {
-    id: 1,
-    name: "Medical AI Polaris",
-    tagline: "FACS × LLM 統合メンタルケアAI",
-    problem:
-      "既存のメンタルケアAIはAPI依存で精度・コストに課題．表情認識の学術的厳密性が欠如している．",
-    solution:
-      "FACSコーディングとNumPyスクラッチ実装による独自深層学習モデルで，表情からの感情推定精度を最大化．",
-    stack: ["Python", "PyTorch", "NumPy", "FACS", "Deep Learning"],
-    metrics: [
-      { label: "Model Accuracy", value: "98.5%", icon: "target" },
-      { label: "Latency", value: "12ms", icon: "zap" },
-      { label: "Parameters", value: "1.2M", icon: "cpu" },
-    ],
-    github: "https://github.com/BelltreeTech",
-    demo: null,
-    status: "In Development",
-  },
-  {
-    id: 2,
-    name: "ELSI Compliance Engine",
-    tagline: "AI倫理・法規制チェックフレームワーク",
-    problem:
-      "AI開発現場でELSI（倫理的・法的・社会的課題）のチェックが属人的かつ非体系的．",
-    solution:
-      "法的要件をルールエンジン化し，AIシステムの開発プロセスに統合可能なコンプライアンスチェッカーを構築．",
-    stack: ["Python", "NLP", "Knowledge Graph", "FastAPI"],
-    metrics: [
-      { label: "Rule Coverage", value: "94%", icon: "shield" },
-      { label: "Check Speed", value: "<3s", icon: "zap" },
-      { label: "Regulations", value: "120+", icon: "file-text" },
-    ],
-    github: "https://github.com/BelltreeTech",
-    demo: null,
-    status: "Prototype",
-  },
-  {
-    id: 3,
-    name: "Affective Computing SDK",
-    tagline: "リアルタイム表情分析エンジン",
-    problem:
-      "既存の表情認識APIはブラックボックスで，学術研究での再現性・透明性が確保できない．",
-    solution:
-      "FACS Action Unit検出をスクラッチ実装し，推論過程が透明なオープンソースSDKを提供．",
-    stack: ["Python", "OpenCV", "NumPy", "ONNX"],
-    metrics: [
-      { label: "AU Detection", value: "96.2%", icon: "eye" },
-      { label: "FPS", value: "30+", icon: "activity" },
-      { label: "Model Size", value: "45MB", icon: "hard-drive" },
-    ],
-    github: "https://github.com/BelltreeTech",
-    demo: null,
-    status: "Research",
+    id: "polaris",
+    name: "Polaris",
+    tagline: "感情を理解し、対話に生かすAI",
+    summary:
+      "入院中の中高生に向けた、お悩み相談AIの研究・開発。相手の感情や置かれた状況を、対話の設計にどう取り入れられるかを探っています。",
+    aim: "入院生活の中で悩みを話せる場をつくり、一人ひとりに寄り添う対話を目指す。",
+    approach:
+      "表情分析（FACS）と大規模言語モデル（LLM）の接点を研究。発表やユーザーテストで得た気づきを、設計の見直しにつなげています。",
+    stack: ["Python", "PyTorch", "NumPy", "FACS", "LLM"],
+    status: "研究・開発",
+    links: [],
   },
 ];
 
-export const timeline = [
+export const internships = [
   {
-    year: "2026",
-    title: "明治大学 スマートメカトロニクス研究室 共同研究",
-    subtitle: "Coming soon...",
-    acquiredCapital: [
+    id: "mocmo",
+    organization: "株式会社モシーモ（mocmo）",
+    period: "2024年1月",
+    startDate: "2024-01",
+    endDate: "2024-01",
+    role: "未来探求事業・企画部 インターン",
+    responsibilities: [
+      "競合他社のリサーチ",
+      "新規事業の開拓",
+      "プロダクトのコスト検討",
+      "プロトタイプ開発",
     ],
-    active: true,
-    url: "https://weblab.t.u-tokyo.ac.jp/",
+    learnings: [
+      "新規事業の提案や教材開発を通じて、AIを社会実装するためのプロセスを学びました。",
+      "相談AIの知見を得るとともに、事業・コスト・開発をつなげて考える経験になりました。",
+    ],
   },
   {
-    year: "2026",
-    title: "東京大学 松尾・岩澤研究室 プログラム",
-    subtitle: "GLOBAL CONSUMER INTELLIGENCE 2026 Summer / Deep Learning Basic 2026 Spring",
-    acquiredCapital: [
-      "Coming soon...",
+    id: "vr-design",
+    organization: "株式会社VRデザイン研究所",
+    period: "2024年11月〜2025年3月",
+    startDate: "2024-11",
+    endDate: "2025-03",
+    role: "U-15プロジェクト インターン",
+    responsibilities: [
+      "イベント運営",
+      "技術スタッフ",
+      "プログラミング講師",
+      "Unityを学ぶ中学生の学習支援・講座運営",
     ],
-    active: true,
-    url: "https://weblab.t.u-tokyo.ac.jp/",
+    learnings: [
+      "AI・VRを社会に開かれた形で届ける責任を学びました。",
+      "学ぶ人と接する現場を通じて、技術を使い手へつなぐことの重要性を実感しました。",
+    ],
   },
   {
-    year: "2026",
-    title: "慶應義塾大学 SFC 入学",
-    subtitle: "総合政策学部 総合政策学科",
-    acquiredCapital: [
-      "Coming soon...",
+    id: "vr-imaginators",
+    organization: "株式会社VR IMAGINATORS",
+    period: "2024年9月〜2025年6月",
+    startDate: "2024-09",
+    endDate: "2025-06",
+    role: "企画開発・広報 インターン",
+    responsibilities: ["企画開発", "広報"],
+    learnings: [
+      "感情理解をAIに組み込む手法に触れ、対話AIと感情分析を統合するための実務知識を学びました。",
     ],
-    active: true,
-    url: "https://www.sfc.keio.ac.jp/",
-  },
-  {
-    year: "2025",
-    title: "一般社団法人ウェルネス・テックラボ 設立",
-    subtitle: "代表理事 / CTOとして就任",
-    acquiredCapital: [
-      "法人設立・組織運営における起業家としての胆力",
-      "多様な専門家(医療・教育等)を巻き込む巻き込み力",
-      "研究を「実社会のプロダクト」へ昇華させる事業設計",
-    ],
-    active: true,
-    url: null,
-  },
-  {
-    year: "2025",
-    title: "MAKERS UNIVERSITY U-18の第10期生 採択",
-    subtitle: "日本最高峰の次世代起業家育成プログラム",
-    acquiredCapital: [
-      "トップメンターによる事業解像度の引き上げ",
-      "社会課題解決に挑む異能の同世代ネットワーク",
-      "プロダクト(Polaris)の市場価値検証とピッチ力",
-    ],
-    active: false,
-    url: "https://makers-u18.jp/",
-  },
-  {
-    year: "2024",
-    title: "ITベンチャー3社でのインターン経験",
-    subtitle: "株式会社モシーモ / VR IMAGINATORS / VRデザイン研究所",
-    acquiredCapital: [
-      "対話AIと感情分析を統合する実務レベルの開発力",
-      "社会に開かれたプロダクトをデリバリーする責任と品質担保",
-      "競合リサーチ・コスト検討を含む新規事業開発のプロセス",
-    ],
-    active: false,
-  },
-  {
-    year: "2023",
-    title: "慶應SFC主催の未来構想キャンプin鳥取 2023 修了",
-    subtitle: "XRとロボティクスで人々の健康を支える",
-    acquiredCapital: [
-      "『つくる』から『届ける』へ，社会実装を前提とした技術視点",
-      "医療現場のリアルなペインを引き出すヒアリング力",
-      "先端技術をエンドユーザーに適応させるUI/UX設計",
-    ],
-    active: false,
-  },
-  {
-    year: "2022",
-    title: "平均年齢32歳のハッカソン/フェスでチームリーダーを経験",
-    subtitle: "VRプロフェッショナルアカデミー 最年少入学",
-    acquiredCapital: [
-      "現役シニアエンジニアと対等に議論・協働するコミュニケーション力",
-      "全体を俯瞰してそれぞれにタスクを振り分けるマネジメント力",
-      "課題発見からXRプラン立案・デモ開発までを統括する統率力",
-    ],
-    active: false,
   },
 ];
-export const domains = {
-  psychology: {
-    title: "Psychology",
-    subtitle: "FACS & Affective Computing",
-    icon: "brain",
+
+export const achievements = [
+  {
+    id: "science-castle-world-2025",
+    title: "サイエンスキャッスルワールド2025",
+    category: "award",
+    categoryLabel: "受賞",
+    date: "2025-12",
+    dateLabel: "2025年12月",
+    result: "アステラス製薬賞・優秀賞",
     description:
-      "表情分析（FACS: Facial Action Coding System）を基盤とした感情認識技術．AIに「共感」を実装することで，孤独な入院患者の心に寄り添う．",
-    points: [
-      "Facial Action Coding System (FACS) — 表情筋の動きをコード化",
-      "Affective Computing — 感情の計算的モデリング",
-      "Emotion Recognition — マルチモーダル感情推定",
-      "Therapeutic AI — 心理的介入のためのAI設計",
+      "「入院中の中高生に特化した感情を理解できるAIの開発」で、同大会の2つの賞を受賞しました。",
+    organization: "株式会社リバネス",
+    links: [
+      {
+        label: "主催者の結果発表",
+        url: "https://lne.st/2025/12/15/scien-cecastle-world2025/",
+      },
     ],
   },
-  governance: {
-    title: "AI Governance",
-    subtitle: "ELSI & Responsible AI",
-    icon: "scale",
+  {
+    id: "global-link-2025",
+    title: "Global Link Singapore 2025",
+    category: "participation",
+    categoryLabel: "大会出場",
+    date: "2025-07",
+    dateLabel: "2025年7月",
+    result: "Applied Science / Medical Science 分野で出場",
     description:
-      "技術の独走を防ぎ，人が幸せになるための法・倫理的フレームワークを研究．AIの社会実装における倫理的・法的・社会的課題（ELSI）に取り組む．",
-    points: [
-      "ELSI Framework — 倫理的・法的・社会的影響評価",
-      "AI Safety — アラインメントと安全性の担保",
-      "Regulatory Compliance — 各国AI規制への準拠",
-      "Responsible Innovation — 責任あるイノベーション設計",
+      "国際大会に出場。幅広い研究や価値観に触れ、対話AIの設計についてフィードバックを受けました。",
+    organization: "Global Link Singapore",
+    links: [],
+  },
+  {
+    id: "science-grant-2024",
+    title: "サイエンスキャッスル研究費 ベネッセこども基金D&I賞2024",
+    category: "research-support",
+    categoryLabel: "研究支援",
+    date: "2025-03",
+    dateLabel: "2025年3月 修了",
+    result: "研究支援プログラム修了",
+    description:
+      "「入院中の中高生を対象としたお悩み相談アプリ Polaris の開発」をテーマに、2024年度の研究支援活動を修了しました。",
+    organization: "ベネッセこども基金 / リバネス",
+    links: [],
+  },
+  {
+    id: "gakugei-68",
+    title: "第68回 全国学芸サイエンスコンクール",
+    category: "award",
+    categoryLabel: "受賞",
+    date: "2025-03",
+    dateLabel: "2025年3月",
+    result: "高校生の部・スタートアップ部門 銀賞",
+    description:
+      "Polarisを発表。社会実装や収益性の観点からフィードバックを受け、開発とユーザーテストの取り組みが評価されました。",
+    organization: "株式会社旺文社",
+    links: [],
+  },
+  {
+    id: "symposium-10",
+    title: "第10回 高校生国際シンポジウム",
+    category: "award",
+    categoryLabel: "受賞",
+    date: "2025-02",
+    dateLabel: "2025年2月",
+    result: "ポスター部門・医療／医学分野 最優秀賞",
+    description:
+      "研究発表と質疑応答を通じて、課題の捉え方や手法を選んだ理由を伝えました。部門・分野における最優秀賞です。",
+    organization: "一般社団法人Glocal Academy",
+    links: [],
+  },
+  {
+    id: "my-project-2024",
+    title: "My Project Award 2024",
+    category: "award",
+    categoryLabel: "受賞",
+    date: "2025-02",
+    dateLabel: "2025年2月",
+    result: "地域Summit特別賞",
+    description:
+      "Polarisの活動で受賞。AIとの対話だからこそできる支援や、対話の受け止められ方について考えを深めました。",
+    organization: "全国高校生マイプロジェクト全国事務局",
+    links: [],
+  },
+  {
+    id: "inquiry-2025",
+    title: "中高生探究コンテスト2025",
+    category: "selection",
+    categoryLabel: "選考実績",
+    date: "2025",
+    dateLabel: "2025年",
+    result: "困りごと部門 セミファイナリスト",
+    description:
+      "入院中の中高生に特化したお悩み相談AIの開発で、困りごと部門のセミファイナリストに選出されました。",
+    organization: "一般社団法人CREATION DRIVE",
+    links: [],
+  },
+  {
+    id: "makers-10",
+    title: "Makers University U-18 第10期生",
+    category: "adoption",
+    categoryLabel: "採択",
+    date: "2025",
+    dateLabel: "2025年",
+    result: "第10期生として採択",
+    description:
+      "選考を経て第10期生として採択。事業や社会との接点を考え、挑戦する同世代との学びにつなげています。",
+    organization: "MAKERS UNIVERSITY U-18",
+    links: [{ label: "プログラム公式サイト", url: "https://makers-u18.jp/" }],
+  },
+  {
+    id: "science-castle-2024",
+    title: "サイエンスキャッスル2024 東京・関東大会",
+    category: "award",
+    categoryLabel: "受賞",
+    date: "2024-12",
+    dateLabel: "2024年12月",
+    result: "東武不動産賞・奨励賞",
+    description:
+      "ポスター発表部門で、入院中の中高生を対象としたお悩み相談サービスを発表。同大会の企業賞と奨励賞を受賞しました。",
+    organization: "株式会社リバネス",
+    links: [],
+  },
+];
+
+export const qualifications = [
+  {
+    id: "it-passport",
+    title: "ITパスポート試験",
+    category: "qualification",
+    categoryLabel: "資格",
+    date: "2024-03",
+    dateLabel: "2024年3月",
+    result: "合格",
+    description:
+      "経営戦略や法務、マネジメントを含むITの基礎知識を学び、情報処理技術者試験に合格しました。",
+    links: [],
+  },
+];
+
+export const media = [
+  {
+    id: "steenz",
+    title: "Steenz",
+    category: "media",
+    categoryLabel: "メディア掲載",
+    date: "2026-08",
+    dateLabel: "2026年8月",
+    result: "インタビュー掲載",
+    description: "研究や活動について紹介いただきました。",
+    links: [{ label: "掲載記事を読む", url: "https://steenz.jp/59653/" }],
+  },
+  {
+    id: "dempa",
+    title: "電波新聞",
+    category: "media",
+    categoryLabel: "メディア掲載",
+    date: "2025-09",
+    dateLabel: "2025年9月",
+    result: "研究・活動の紹介",
+    description:
+      "表情分析（FACS）とLLMを組み合わせるAIの研究について紹介いただきました。",
+    links: [
+      {
+        label: "掲載記事を読む",
+        url: "https://dempa-digital.com/article/695253",
+      },
     ],
   },
-};
+  {
+    id: "larva06",
+    title: "Larva06",
+    category: "media",
+    categoryLabel: "メディア掲載",
+    date: "2025-07",
+    dateLabel: "2025年7月",
+    result: "インタビュー掲載",
+    description:
+      "Polarisの開発に取り組む背景や、研究・活動についてお話ししました。",
+    links: [
+      {
+        label: "掲載記事を読む",
+        url: "https://larva06.com/2025/07/suzuki-shinri-interview",
+      },
+    ],
+  },
+];
+
+export const activities = [
+  {
+    id: "keio",
+    date: "2026",
+    dateLabel: "2026年〜",
+    title: "慶應義塾大学 総合政策学部",
+    status: "学び",
+    description: "SFCで情報科学・心理学・法律と倫理の接点を探っています。",
+  },
+  {
+    id: "wellness-tech",
+    date: "2025",
+    dateLabel: "2025年〜",
+    title: "一般社団法人ウェルネステックラボ",
+    status: "活動",
+    description:
+      "代表理事 / CTOとして、研究を社会につなげる活動に取り組んでいます。",
+  },
+  {
+    id: "vr-academy",
+    date: null,
+    dateLabel: null,
+    title: "VRプロフェッショナルアカデミー",
+    status: "学び・制作",
+    description:
+      "VRを学び、ハッカソン・フェスでチームリーダーを経験。企画や開発、チームでの協働に取り組みました。",
+  },
+];
+
+export const domains = [
+  {
+    id: "computer-science",
+    name: "情報科学",
+    nameEn: "Computer Science",
+    description:
+      "数理と実装を行き来しながら、AIの仕組みを理解する。数値計算、深層学習、画像処理を研究・制作に生かします。",
+    topics: ["Deep Learning", "Numerical Computing", "Computer Vision"],
+  },
+  {
+    id: "psychology",
+    name: "心理学",
+    nameEn: "Psychology",
+    description:
+      "表情や対話、感情の背景を考える。FACSやAffective Computingを手がかりに、人の状態をどう捉えるかを探ります。",
+    topics: ["FACS", "Affective Computing", "Emotion-Aware AI"],
+  },
+  {
+    id: "law-ethics",
+    name: "法律・倫理",
+    nameEn: "Law & Ethics",
+    description:
+      "技術が人や社会に与える影響を考える。倫理的・法的・社会的課題を、AIの設計と実装の中に位置づけます。",
+    topics: ["ELSI", "Responsible AI", "AI Governance"],
+  },
+];
 
 export const skills = [
-  { name: "Python", level: 92, category: "language" },
-  { name: "Artificial Intelligence (sklearn, PyTorch, TensorFlow, Scikit-learn)", level: 85, category: "framework" },
-  { name: "Data Science (Numpy, Pandas, Matplotlib)", level: 88, category: "framework" },
-  { name: "Infrastructure", level: 65, category: "infra" },
-  { name: "Mathematical  (Linear Algebra, Calculus, Statistics and Probability)", level: 78, category: "theory" },
-  { name: "Deep Learning Theory", level: 82, category: "theory" },
+  {
+    name: "実装・機械学習",
+    description: "研究・制作で扱う技術",
+    technologies: ["Python", "PyTorch", "TensorFlow", "scikit-learn"],
+  },
+  {
+    name: "データ・数値計算",
+    description: "データを読み、数理と実装をつなぐ",
+    technologies: ["NumPy", "Pandas", "Matplotlib"],
+  },
+  {
+    name: "数学・理論",
+    description: "仕組みを基礎から理解するための学び",
+    technologies: ["線形代数", "微積分", "確率・統計", "深層学習理論"],
+  },
+  {
+    name: "技術を届ける",
+    description: "制作と現場の接点",
+    technologies: ["Unity", "XR", "プロトタイプ開発", "インフラの基礎"],
+  },
 ];
-
-export const radarData = {
-  labels: ["Python", "PyTorch", "NumPy", "インフラ", "数理統計", "DL理論"],
-  values: [92, 85, 88, 65, 78, 82],
-};
 
 export const roadmap = [
   {
-    year: "Year 1 (2026–2027)",
-    title: "Foundation",
-    milestones: [
-      "SFC研究会配属 & 研究テーマ確定",
-      "松尾研プログラム修了 & 論文投稿",
-      "Polaris v1.0 リリース",
-    ],
-  },
-  {
-    year: "Year 2 (2027–2028)",
-    title: "Acceleration",
-    milestones: [
-      "国際学会発表 (ACM / IEEE)",
-      "AI Governance フレームワーク公開",
-      "スタートアップ創業 or VC連携",
-    ],
-  },
-  {
-    year: "Year 3 (2028–2029)",
-    title: "Scale",
-    milestones: [
-      "プロダクトの社会実装 & 収益化",
-      "海外リサーチインターン",
-      "シリーズA調達 or 大学院進学",
-    ],
-  },
-];
-
-export const resourceRequests = [
-  {
-    title: "Compute Resources",
-    subtitle: "GPU / Cloud Credits",
-    description: "大規模モデル学習のためのA100/H100 GPUクラスタ，またはクラウドクレジット",
-    icon: "server",
-    priority: "HIGH",
-  },
-  {
-    title: "Seed Funding",
-    subtitle: "研究 & プロトタイプ開発",
-    description: "Polaris の臨床試験・データ収集・プロダクト化に必要な初期資金",
-    icon: "banknote",
-    priority: "HIGH",
-  },
-  {
-    title: "Domain Expert Connections",
-    subtitle: "医療 / 法律 / 心理学",
-    description: "臨床心理士・医師・AI法規制の専門家とのコネクション",
-    icon: "users",
-    priority: "MEDIUM",
-  },
-];
-
-export const validations = [
-  {
-    id: 1,
-    type: "Award",
-    date: "2023-08",
-    title: "慶應義塾大学SFC主催 未来構想キャンプin鳥取2023 修了",
-    issuer: null,
-    description: null,
-    link: null,
-  },
-  {
-    id: 2,
-    type: "Award",
-    date: "2024-12",
-    title: "サイエンスキャッスル2024 東京・関東大会 東武不動産賞 / 奨励賞",
-    issuer: null,
-    description: null,
-    link: null,
-  },
-  {
-    id: 3,
-    type: "Award",
-    date: "2025-02",
-    title: "MY PROJECT AWARD 2024 地域Summit特別賞",
-    issuer: null,
-    description: null,
-    link: null,
-  },
-  {
-    id: 4,
-    type: "Award",
-    date: "2025-02",
-    title: "第10回高校生国際シンポジウム 医療医学部門 最優秀賞",
-    issuer: null,
-    description: null,
-    link: "https://www.glocal-academy.or.jp/",
-  },
-  {
-    id: 5,
-    type: "Award",
-    date: "2025-03",
-    title: "第68回全国学芸サイエンスコンクール 高校生の部 スタートアップ部門 銀賞",
-    issuer: null,
-    description: null,
-    link: null,
-  },
-  {
-    id: 6,
-    type: "Award",
-    date: "2025-03",
-    title: "中高生探究コンテスト困りごと部門 セミファイナリスト",
-    issuer: null,
-    description: null,
-    link: null,
-  },
-  {
-    id: 7,
-    type: "Award",
-    date: "2025-03",
-    title: "MAKERS UNIVERSITY U-18 第10期生 採択",
-    issuer: null,
-    description: null,
-    link: null,
-  },
-  {
-    id: 8,
-    type: "Award",
-    date: "2025-07",
-    title: "Global Link Singapore2025（国際大会） 推薦出場",
-    issuer: null,
-    description: null,
-    link: null,
-  },
-  {
-    id: 9,
-    type: "Award",
-    date: "2025-12",
-    title: "サイエンスキャッスルワールド2025 アステラス製薬賞 / 優秀賞",
-    issuer: null,
-    description: null,
-    link: "https://lne.st/2025/12/15/scien-cecastle-world2025/",
-  },
-  {
-    id: 10,
-    type: "Press",
-    date: "2025-12",
-    title: "Larva06",
-    issuer: null,
-    description: null,
-    link: "https://larva06.com/2025/07/suzuki-shinri-interview",
-  },
-  {
-    id: 11,
-    type: "Press",
-    date: "2025-12",
-    title: "電波新聞",
-    issuer: null,
-    description: null,
-    link: "https://dempa-digital.com/article/695253",
-  },
-  {
-    id: 12,
-    type: "Press",
-    date: "2025-12",
-    title: "Steenz",
-    issuer: null,
-    description: null,
-    link: null,
-  },
-];
-
-export const siteConfig = {
-  meta: {
-    title: "Shinri Suzuki — Hybrid Architect Portfolio",
+    id: "foundation",
+    period: "2026〜2027",
+    title: "研究の基盤を深める",
     description:
-      "AI Implementation × Law & Psychology Domain. SFCの法・心理ドメイン知識 × 東大松尾研のDL実装力．",
+      "研究テーマの具体化、データサイエンス・深層学習の学び、Polarisの改良と公開を目指します。",
   },
-  nav: [
-    { id: "executive", label: "Summary" },
-    { id: "projects", label: "Projects" },
-    { id: "timeline", label: "Timeline" },
-    { id: "validations", label: "Validation" },
-    { id: "domain", label: "Domain" },
-    { id: "tech", label: "Tech" },
-    { id: "roadmap", label: "Roadmap" },
+  {
+    id: "exploration",
+    period: "2027〜2028",
+    title: "外にひらき、検証する",
+    description:
+      "学会発表や共同研究、AIと法律・倫理に関する発信を目指し、研究と事業の接点を探ります。",
+  },
+  {
+    id: "connection",
+    period: "2028〜2029",
+    title: "社会につながる形へ",
+    description:
+      "社会実装、海外での研究経験、事業や大学院での研究への展開を将来の選択肢として考えています。",
+  },
+];
+
+export const contact = {
+  email: "shinri.suzuki@keio.jp",
+  invitation: "研究・開発の相談や、異なる専門からの対話をお待ちしています。",
+  topics: [
+    "AI・感情理解の共同研究",
+    "医療・心理・法律と倫理の接点",
+    "技術開発・研究活動への支援",
   ],
-  hero: {
-    titleLine1: "Hybrid",
-    titleLine2: "Architect",
-    subtitle: "AI Implementation × Law & Psychology Domain",
-    terminalFile: "value_proposition.sh",
-    statusBadge: "System Online — Portfolio v1.0",
-    chips: ["SFC '26", "東大松尾研", "AI Engineer", "法 × 心理 × AI"],
-    navigateHint: "Navigate",
-  },
-  sections: {
-    projects: {
-      number: "02",
-      slug: "Proof of Work",
-      title: "Projects",
-      labels: { problem: "Problem", solution: "Solution" },
-    },
-    timeline: {
-      number: "03",
-      slug: "Timeline of Arbitrage",
-      title: "Leverage Accumulation",
-      labels: { acquiredCapital: "Acquired Capital", current: "Current" },
-    },
-    validations: {
-      number: "04",
-      slug: "Third-Party Validation",
-      title: "Awards & Press",
-      description:
-        "第三者機関による客観的な評価．技術力とビジョンの社会的信頼性を証明する．",
-      labels: { award: "Award", press: "Press" },
-    },
-    domain: {
-      number: "05",
-      slug: "Domain Expertise",
-      title: "Two Pillars of Knowledge",
-      description:
-        "単なるコーダーではなく「思想家」として，技術と人間社会の接点を設計する．",
-      intersection: {
-        formula: "Psychology × AI × Law",
-        result: "Unique Position",
-      },
-    },
-    tech: {
-      number: "06",
-      slug: "Technical Stack Spec",
-      title: "Capability Matrix",
-      labels: {
-        radarTitle: "Skill Radar",
-        barsTitle: "Proficiency Levels",
-      },
-      legend: [
-        { label: "Language", color: "var(--color-cyber-blue)" },
-        { label: "Framework", color: "var(--color-neon-emerald)" },
-        { label: "Theory", color: "var(--color-neon-purple)" },
-      ],
-    },
-    roadmap: {
-      number: "07",
-      slug: "Resource Request & Roadmap",
-      title: "Strategic Roadmap",
-      resourcePanel: {
-        title: "Resource Request",
-        subtitle: "ミッション達成に必要なリソース",
-      },
-      cta: {
-        label: "Schedule a Meeting",
-        href: "https://calendly.com",
-        subtext: "投資家・メンター・研究者の方はお気軽にご連絡ください",
-      },
-      footer: {
-        builtWith: "Built with React + Tailwind CSS + Framer Motion",
-      },
-    },
-  },
+  support:
+    "計算資源やクラウド環境、研究・プロトタイプ開発への支援、専門家とのつながりについてもご相談ください。",
 };

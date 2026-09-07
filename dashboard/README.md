@@ -1,16 +1,112 @@
-# React + Vite
+# 鈴木 真理 — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+慶應義塾大学 総合政策学部、Researcher & Developer のポートフォリオ。React + Vite + Tailwind CSS の既存アプリを維持し、名刺に合わせた白・青のブランドと、画面幅に応じた表示・操作を実装しています。
 
-Currently, two official plugins are available:
+公開先は https://belltreetech.github.io/ 。ソースの正式な管理先は `main`、配信先は同じリポジトリの `gh-pages` です。白・青のPC・スマホ共通サイトとして、確認済みの研究・経験・実績を掲載します。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ローカルで確認する
 
-## React Compiler
+このディレクトリ（`dashboard/`）で実行します。今回の実行環境は macOS arm64、Node.js 24、npm 11 です。依存関係は `package-lock.json` で固定しています。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm ci
+npm run dev -- --host 127.0.0.1 --port 4173 --strictPort
+```
 
-## Expanding the ESLint configuration
+開発用表示: http://127.0.0.1:4173/
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+本番用の静的ファイルで確認するときは、別のターミナルで実行します。
+
+```sh
+npm run build
+npm run preview -- --host 127.0.0.1 --port 4174 --strictPort
+```
+
+本番用ビルドのローカル表示: http://127.0.0.1:4174/
+
+`/#research`、`/#internships`、`/#achievements`、`/#approach`、`/#contact` へ直接アクセスできます。個別の実績は `/#global-link-2025` などのURLで開けます。ページ内ハッシュを使うため、GitHub Pages のサーバー側URL書換えには依存しません。
+
+## PCとスマートフォンの構成
+
+内容・状態・DOMは共通で、CSSを中心に表示を変えます。端末名・User-Agentの振り分け、別URL、二重の経歴データ、重い画面の二重描画はありません。
+
+| 幅 | 表示・操作 |
+| --- | --- |
+| 960px以上 | 左側に常設のセクション目次。プロフィールと研究フォーカスを横並びにし、研究・領域・メディア等を段組みで表示。実績は日時・分類と内容を左右に配置 |
+| 640〜959px | コンパクトな固定ヘッダーと開閉メニュー。内容は横幅を利用した段組みを維持 |
+| 639px以下 | 1列で読み進める構成。メニューを縦に展開し、実績は日時・分類→名称・結果→詳細の順に配置 |
+
+1199/1200pxではPC側の余白を調整し、1800pxで最大コンテナ幅を設けています。本文を狭い固定幅にせず、320pxまで重要情報を保持します。本文の横はみ出しを `overflow-x: hidden` で隠していません。
+
+目次は「プロフィール → 研究・制作 → インターン → 大会・受賞等 → 考え方・技術 → 連絡先」。現在のセクションを表示し、タッチ・マウス・キーボードで移動できます。本文へ移動するスキップリンク、明確なフォーカス、44px以上の主要操作領域、Escapeで閉じるメニュー、safe area、文字拡大、reduced motionに対応しています。固定ヘッダーの高さを測ってアンカー位置を調整します。
+
+研究・インターン・実績の詳細はネイティブの `details` / `summary`。リサイズ・回転しても同じ要素が維持され、開閉状態を失いません。実績の区分フィルターは大会・活動記録に適用し、資格・メディアは別に掲載。受賞件数の総数表示は行いません。
+
+研究・制作はPolarisの1件を全幅のカードで紹介します。インターン3件、大会・受賞等9件、資格1件、メディア3件を区別し、実績件数と区分は公開データから生成します。日付が確認できない活動は、経験そのものに根拠がある場合に限り日付を表示せず掲載できます。
+
+## 内容を更新する
+
+表示内容の唯一の編集元は [`src/data/portfolioData.js`](src/data/portfolioData.js) です。PC・スマホを別々に更新する必要はありません。
+
+| export | 更新する内容 |
+| --- | --- |
+| `profile` | 名前、所属、研究関心、考え方、現在の役職、SNS |
+| `projects` | 研究・制作テーマ、目的、取り組み、技術、確認済みリンク |
+| `internships` | 組織、開始・終了月、担当、学び |
+| `achievements` | 大会・受賞・研究支援・選考・採択・修了 |
+| `qualifications` / `media` | 資格、メディア掲載 |
+| `activities` / `domains` / `skills` | 学びと活動、研究領域、技術 |
+| `roadmap` / `contact` | 将来の目標と連絡先 |
+
+新しい記録には一意で安定した `id` を付けます。`date` は `YYYY` / `YYYY-MM` のように根拠に合う精度とし、`dateLabel` は表示用に書きます。`links` は `{ label, url }` の配列です。確認できないリンクは空配列にし、仮のボタンを追加しません。
+
+インターン期間と現在の所属、受賞と出場・採択、開発目的と実証済みの効果を区別してください。数値の掲載には評価対象・条件・根拠が必要です。公開用の編集方針は [`docs/content-policy.md`](docs/content-policy.md) を参照してください。詳細な根拠メモと本人確認の回答はローカルに保持し、アプリへの取り込みとGitへの追加の両方から除外します。
+
+`src/components/Sidebar.jsx` が目次、`src/sections/PortfolioSections.jsx` が共通の表示、`src/App.jsx` がハッシュ移動・フォーカス・現在位置を担当します。配色・段組みは `src/index.css` にまとめています。ページタイトル・description・OGP・canonical・JavaScript無効時の連絡先は `index.html`、faviconは `public/favicon.svg` です。氏名や連絡先を変更する際は初期HTMLも合わせて更新してください。
+
+InterはLatinのWOFF2を1ファイルだけ自己配信し、日本語は端末の日本語フォントを使用します。外部フォントリクエストや常時アニメーションはありません。本人の写真・証書画像はWebに転用していません。
+
+## 検証
+
+```sh
+npm run lint
+npm test
+npm run test:build
+npm audit
+```
+
+- `npm test`: 確認済みの経験・実績・日付精度を保持し、訂正によって削除・保留した情報が公開データに復活しないことを検査。
+- `npm run test:build`: ビルドした後、配信ファイルにPDF・根拠メモ・ソース・撤回済みの内容が混入していないこと、初期HTMLのブランド、主要アセット参照を検査。
+
+ブラウザ検証は、上記の本番用プレビューを起動した状態で行います。初回のみChromiumとWebKitをインストールします。
+
+```sh
+npm run test:browsers:install
+BASE_URL=http://127.0.0.1:4174/ npm run test:browser
+```
+
+結果とスクリーンショットは `artifacts/browser-qa/` に保存します（Git対象外）。`QA_OUTPUT_DIR` で保存先を変える場合も、Git対象外であり配信元の外にある場所を使用してください。特定の問題を再確認する場合だけ `QA_WIDTHS=320,768` や `QA_BROWSERS=webkit` で範囲を絞れます。
+
+検証の対象は320 / 360 / 390 / 430 / 639 / 640 / 641 / 768 / 959 / 960 / 961 / 1024 / 1199 / 1200 / 1201 / 1280 / 1440 / 1799 / 1800 / 1801 / 1920 CSS pxです。主要導線、開閉、区分、直接アクセス、再読み込み、戻る・進む、リサイズ、横向き、200%の文字拡大、キーボード、axeによるアクセシビリティ検査を含みます。既存結果・ブラウザの版・制約の公開用要約は [`docs/validation-summary.md`](docs/validation-summary.md) を参照してください。詳細ログはローカル限定で保持します。
+
+ブラウザのエミュレーションは実機確認と区別してください。文字拡大の自動検証はルート文字サイズを200%に設定するもので、ブラウザUIの拡大操作そのものではありません。メール・SNSはクリックを傍受して遷移先を検査します。OSのメールアプリの実起動・送信は検証範囲外です。外部の本人プロフィール・記事への到達確認は、別途行った資料照合の結果と区別しています。
+
+## 原資料と公開方法
+
+原資料はリポジトリ直下の `Database/` に保持し、ルートの `.gitignore` で除外しています。詳細な根拠メモ・検証記録、`local-review/` の本人確認表と一時プレビュー情報、スクリーンショット・ログもGit対象外です。原本や既存記録は変更・削除せず、`public/` へコピーしたり、ダウンロードリンクを追加したりしないでください。
+
+サイトの配信範囲と、GitHubで公開されるソースリポジトリは別です。`dist/` にないことだけで非公開とは判断しません。`git ls-files` と `git ls-files --others --exclude-standard` で追跡済みファイル・追加候補を確認し、原本・私的記録が両方に含まれないことを確かめてください。`.gitignore` は追跡済みファイルに適用されず、強制追加も防ぎません。
+
+スマホ実機向けの一時プレビューは、信頼できる同一LANで、確認したMacのLANアドレスだけに待ち受けを限定し、配信元をビルド済みの `dist/` に指定します。実際のアドレス・プロセス情報・停止方法はローカルの受け入れ記録に置きます。ネットワーク設定の変更や公開トンネルは、この確認の手順に含みません。
+
+2026-09-07のGitHub API確認では、Pagesは **`gh-pages` ブランチのルート**から公開し、カスタムドメインは未設定でした。`package.json` の `deploy` は `gh-pages -d dist`、`predeploy` はビルドです。`npm run build` や `npm run preview` 自体は本番へ反映しません。Pages設定と公開方式を維持します。
+
+公開が承認された変更は、次の順で反映します。
+
+1. 公開データと今回の差分を検証し、未確認の具体的な主張を保留する。公開承認を未確認経歴の事実承認とは扱わない。
+2. `dist/` とGit追跡・追加候補を別々に検査し、変更対象を明示してステージする。ステージ済みの内容を確認してからコミットする。
+3. 保護設定とリモートの最新状態を確認し、作業ブランチの変更を通常のmergeまたはPRで `main` に取り込む。force pushや保護回避を行わない。
+4. 承認済みソースから `npm run deploy` を実行し、`gh-pages` とGitHub Pagesの公開処理を確認する。ソースSHAと配信SHAを記録する。
+5. 公開URLで描画・操作・直接リンク・再読み込みを検証し、配信アセットが今回のビルドと一致すること、原資料・私的記録が取得できないことを確認する。
+
+公開前後の識別子・配信ファイルのハッシュ・確認ログはローカルのリリース記録に保存します。復旧は、事実訂正済みのソースと依存ロックから再ビルドし、回帰テスト後に通常の追加コミット／公開で行います。訂正前の版を無条件に再配信したり、履歴を改変したりしないでください。実機確認が未実施の場合は、その制約を公開結果と分けて記録します。

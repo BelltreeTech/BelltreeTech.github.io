@@ -1,66 +1,106 @@
-import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import BottomDock from "./components/Sidebar";
-import ExecutiveSummary from "./sections/ExecutiveSummary";
-import ProofOfWork from "./sections/ProofOfWork";
-import TimelineArbitrage from "./sections/TimelineArbitrage";
-import Validations from "./sections/Validations";
-import DomainExpertise from "./sections/DomainExpertise";
-import TechStackSpec from "./sections/TechStackSpec";
-import ResourceRequest from "./sections/ResourceRequest";
-import { siteConfig } from "./data/portfolioData";
-import { pageVariants } from "./utils/animations";
+import { useEffect, useState } from "react";
+import Sidebar from "./components/Sidebar";
+import {
+  Profile,
+  Research,
+  Internships,
+  Achievements,
+  Approach,
+  Contact,
+} from "./sections/PortfolioSections";
 
-const sections = {
-  executive: ExecutiveSummary,
-  projects: ProofOfWork,
-  timeline: TimelineArbitrage,
-  validations: Validations,
-  domain: DomainExpertise,
-  tech: TechStackSpec,
-  roadmap: ResourceRequest,
-};
-
-
+const sectionIds = [
+  "profile",
+  "research",
+  "internships",
+  "achievements",
+  "approach",
+  "contact",
+];
 
 export default function App() {
-  const [active, setActive] = useState("executive");
-  const ActiveSection = sections[active];
+  const [active, setActive] = useState("profile");
 
   useEffect(() => {
-    document.title = siteConfig.meta.title;
+    let focusFrame;
+    const focusHash = () => {
+      let id;
+      try {
+        id = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return;
+      }
+      const target = document.getElementById(id);
+      if (!target) return;
+      if (target instanceof HTMLDetailsElement) target.open = true;
+      const section = target.closest("section[id]");
+      if (sectionIds.includes(section?.id)) setActive(section.id);
+      cancelAnimationFrame(focusFrame);
+      focusFrame = requestAnimationFrame(() => {
+        target.scrollIntoView({ block: "start" });
+        const focusTarget =
+          target.querySelector("h1, h2, h3, h4, summary") || target;
+        if (
+          !focusTarget.matches(
+            "a, button, input, select, textarea, summary, [tabindex]",
+          )
+        )
+          focusTarget.tabIndex = -1;
+        focusTarget.focus({ preventScroll: true });
+      });
+    };
+    // A repeated anchor does not emit hashchange; it must still restore focus.
+    const focusCurrentLink = (event) => {
+      const link = event.target.closest?.('a[href^="#"]');
+      if (
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        !link
+      )
+        return;
+      if (link.hash === window.location.hash) {
+        event.preventDefault();
+        focusHash();
+      }
+    };
+    focusHash();
+    window.addEventListener("hashchange", focusHash);
+    document.addEventListener("click", focusCurrentLink);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries)
+          if (entry.isIntersecting) setActive(entry.target.id);
+      },
+      { rootMargin: "-12% 0px -70% 0px" },
+    );
+    sectionIds.forEach((id) => observer.observe(document.getElementById(id)));
+    return () => {
+      window.removeEventListener("hashchange", focusHash);
+      document.removeEventListener("click", focusCurrentLink);
+      cancelAnimationFrame(focusFrame);
+      observer.disconnect();
+    };
   }, []);
 
   return (
-    <div className="relative min-h-screen">
-      {/* Noise Overlay */}
-      <div className="noise-overlay" />
-
-      {/* Main Content — centered, removed pb-48 in favor of physical spacer */}
-      <main className="min-h-screen">
-        <div className="w-full relative">
-          
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-            >
-              <ActiveSection />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* 👇 物理的な透明スペーサー。これで絶対にボトムドックと被らない 👇 */}
-          <div className="h-20 w-full pointer-events-none flex-shrink-0" aria-hidden="true" />
-
-        </div>
-      </main>
-
-      {/* Bottom Dock Navigation */}
-      <BottomDock active={active} onNavigate={setActive} />
-    </div>
+    <>
+      <a className="skip-link" href="#main-content">
+        本文へ移動
+      </a>
+      <div className="portfolio-shell">
+        <Sidebar active={active} />
+        <main id="main-content" tabIndex={-1}>
+          <Profile />
+          <Research />
+          <Internships />
+          <Achievements />
+          <Approach />
+          <Contact />
+        </main>
+      </div>
+    </>
   );
 }

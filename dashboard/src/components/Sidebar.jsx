@@ -1,72 +1,143 @@
-import { motion } from "framer-motion";
-import {
-  LayoutDashboard,
-  FolderKanban,
-  GitBranch,
-  Award,
-  BookOpen,
-  Cpu,
-  Rocket,
-} from "lucide-react";
-import { siteConfig } from "../data/portfolioData";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { profile, contact } from "../data/portfolioData";
 
-const iconMap = {
-  executive: LayoutDashboard,
-  projects: FolderKanban,
-  timeline: GitBranch,
-  validations: Award,
-  domain: BookOpen,
-  tech: Cpu,
-  roadmap: Rocket,
-};
+const navigation = [
+  { id: "profile", label: "プロフィール", en: "Profile" },
+  { id: "research", label: "研究・制作", en: "Research & Projects" },
+  { id: "internships", label: "インターン", en: "Experience" },
+  { id: "achievements", label: "大会・受賞等", en: "Achievements" },
+  { id: "approach", label: "考え方・技術", en: "Approach & Skills" },
+  { id: "contact", label: "連絡先", en: "Contact" },
+];
 
-export default function BottomDock({ active, onNavigate }) {
+export default function Sidebar({ active }) {
+  const [open, setOpen] = useState(false);
+  const menuButton = useRef(null);
+  const header = useRef(null);
+
+  useEffect(() => {
+    const observer = new ResizeObserver(([entry]) => {
+      document.documentElement.style.setProperty(
+        "--header-height",
+        `${entry.borderBoxSize?.[0]?.blockSize || entry.contentRect.height}px`,
+      );
+    });
+    observer.observe(header.current);
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--header-height");
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    // CSS owns layout. This subscription only clears the mobile disclosure state.
+    const desktop = window.matchMedia("(min-width: 960px)");
+    const closeDesktopMenu = (event) => {
+      if (!event.matches) return;
+      setOpen(false);
+      document
+        .getElementById(active)
+        ?.querySelector("h1, h2")
+        ?.focus({ preventScroll: true });
+    };
+    const closeOutsideMenu = (event) => {
+      if (!header.current.contains(event.target)) setOpen(false);
+    };
+    desktop.addEventListener("change", closeDesktopMenu);
+    document.addEventListener("pointerdown", closeOutsideMenu);
+    return () => {
+      desktop.removeEventListener("change", closeDesktopMenu);
+      document.removeEventListener("pointerdown", closeOutsideMenu);
+    };
+  }, [open, active]);
+
+  function closeOnEscape(event) {
+    if (event.key === "Escape" && open) {
+      setOpen(false);
+      menuButton.current.focus();
+    }
+  }
+
   return (
-    <nav className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 px-3 sm:px-4 md:px-5 py-2.5 md:py-3 rounded-2xl bg-[#060608]/80 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.5),0_0_80px_rgba(0,229,255,0.04)]">
-      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-        {siteConfig.nav.map((item) => {
-          const isActive = active === item.id;
-          const Icon = iconMap[item.id];
-          return (
-            <button
-              key={item.id}
-              onClick={() => onNavigate(item.id)}
-              className={`relative flex flex-col items-center gap-1 px-3.5 sm:px-5 md:px-6 py-2.5 md:py-3 rounded-xl transition-colors duration-300 cursor-pointer group ${
-                isActive
-                  ? "text-[var(--color-cyber-blue)]"
-                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
-              }`}
-            >
-              {/* Active background pill */}
-              {isActive && (
-                <motion.div
-                  layoutId="dock-active"
-                  className="absolute inset-0 rounded-xl bg-[rgba(0,229,255,0.1)] border border-[rgba(0,229,255,0.15)]"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-
-              {/* Active glow dot */}
-              {isActive && (
-                <motion.div
-                  layoutId="dock-glow"
-                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[var(--color-cyber-blue)] shadow-[0_0_8px_rgba(0,229,255,0.7)]"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-
-              <Icon
-                className={`relative z-10 w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 ${
-                  isActive ? "scale-110" : "group-hover:scale-110"
-                }`}
-              />
-              <span className="relative z-10 text-[10px] sm:text-[11px] md:text-xs font-medium tracking-wider leading-none">
-                {item.label}
-              </span>
-            </button>
-          );
-        })}
+    <header
+      className="site-header"
+      ref={header}
+      onKeyDown={closeOnEscape}
+      onBlur={(event) => {
+        // WebKit reports null before a pointer-activated link's click fires.
+        // Outside pointer activation is handled separately without hiding that link.
+        if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}
+    >
+      <a
+        className="wordmark"
+        href="#profile"
+        onClick={() => setOpen(false)}
+        aria-label="鈴木真理 プロフィール"
+      >
+        <span className="brand-mark" aria-hidden="true">
+          s.
+        </span>
+        <span>
+          {profile.nameEn}
+          <small>{profile.role}</small>
+        </span>
+      </a>
+      <button
+        className="menu-toggle"
+        ref={menuButton}
+        aria-expanded={open}
+        aria-controls="primary-navigation"
+        onClick={(event) => {
+          // WebKit does not focus buttons on pointer activation by default.
+          event.currentTarget.focus({ preventScroll: true });
+          setOpen(!open);
+        }}
+      >
+        {open ? (
+          <X size={20} aria-hidden="true" />
+        ) : (
+          <Menu size={20} aria-hidden="true" />
+        )}
+        <span>メニュー</span>
+      </button>
+      <nav
+        className={`primary-navigation${open ? " is-open" : ""}`}
+        id="primary-navigation"
+        aria-label="主要ナビゲーション"
+      >
+        <span className="nav-caption">INDEX</span>
+        {navigation.map((item, index) => (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            aria-current={active === item.id ? "location" : undefined}
+            onClick={() => setOpen(false)}
+          >
+            <span className="nav-number" aria-hidden="true">
+              0{index + 1}
+            </span>
+            <span>
+              {item.label}
+              <small>{item.en}</small>
+            </span>
+            <span className="nav-indicator" aria-hidden="true" />
+          </a>
+        ))}
+      </nav>
+      <div className="sidebar-footer">
+        <p>
+          情報科学から、
+          <br />
+          人と社会へ。
+        </p>
+        <a href={`mailto:${contact.email}`} className="sidebar-contact">
+          メールで連絡する <ArrowUpRight size={16} aria-hidden="true" />
+        </a>
+        <small>SHINRI SUZUKI © 2026</small>
       </div>
-    </nav>
+    </header>
   );
 }

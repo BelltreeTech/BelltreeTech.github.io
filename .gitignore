@@ -1,0 +1,12 @@
+# Private reference materials: never publish or commit originals.
+/Database/
+**/.DS_Store
+**/.Rhistory
+/dashboard/test-results/
+/dashboard/playwright-report/
+/dashboard/artifacts/
+
+# Local source analysis and acceptance records; keep originals on this Mac.
+/dashboard/docs/content-evidence.md
+/dashboard/docs/verification.md
+/dashboard/local-review/
