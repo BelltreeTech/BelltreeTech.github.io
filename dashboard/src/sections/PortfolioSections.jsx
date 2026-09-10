@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import RoseScene from "../components/RoseScene";
+import portrait from "../assets/shinri-suzuki.webp";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -73,6 +75,7 @@ function FocusFrame() {
   const current = focusItems.find((item) => item.id === selected);
   return (
     <div className="focus-frame">
+      <RoseScene />
       <div className="focus-controls" role="group" aria-label="焦点を切り替える">
         {focusItems.map((item, index) => (
           <button key={item.id} type="button" aria-pressed={selected === item.id}
@@ -110,12 +113,15 @@ function FocusFrame() {
 export function Profile() {
   return (
     <section className="page-section profile-section" id="profile" aria-labelledby="profile-title">
-      <div className="section-topline"><span>01 / PROFILE</span><span>OPEN VARIABLES</span></div>
+      <div className="section-topline"><span>01 / PROFILE</span><span>FUTURE = VARIABLE</span></div>
       <div className="hero-grid">
         <div className="hero-intro">
           <p className="eyebrow">{profile.role.toUpperCase()}</p>
-          <h1 id="profile-title" tabIndex={-1}>{profile.nameJa}</h1>
-          <p className="identity-reading">{profile.nameEn}</p>
+          <div className="portrait-identity">
+            <img className="portrait" src={portrait} width="151" height="151" alt="鈴木真理のポートレート" />
+            <div><h1 id="profile-title" tabIndex={-1}>{profile.nameJa}</h1>
+            <p className="identity-reading">{profile.nameEn}</p></div>
+          </div>
           <div className="hero-identity">
             <p className="hero-question">問い、つくり、{" "}<br />また問う。</p>
             <p className="affiliation">{profile.affiliation}</p>
@@ -137,7 +143,7 @@ export function Profile() {
       <div className="principles-strip">
         <p><span>THINK</span><strong>{profile.thinking}</strong></p>
         <p><span>BUILD</span><strong>{profile.building}</strong></p>
-        <p className="future-motto"><strong>{profile.motto}</strong><span>{profile.mottoJa}</span></p>
+        <p className="future-motto"><strong>{profile.mottoJa}</strong></p>
       </div>
     </section>
   );
@@ -457,6 +463,10 @@ export function Approach() {
           </article>
         ))}
       </div>
+      <div className="future-note">
+        <div><p className="eyebrow">未来について</p><h3>{profile.motto}</h3><p className="future-variable">{profile.futureVariable}</p></div>
+        <div><p>{profile.futureMeaning}</p><p className="future-operations"><code>append</code> 加える <span>/</span> <code>pop</code> 手放す <span>/</span> <code>clear</code> 始め直す</p><p className="rose-meaning">{profile.blueRoseMeaning}</p></div>
+      </div>
       <div className="roadmap-block">
         <h3 className="subsection-title">これからの目標</h3>
         <div className="roadmap-grid">
@@ -480,6 +490,7 @@ export function Contact() {
       id="contact"
       aria-label="連絡先"
     >
+      <div className="starting-line"><p className="eyebrow">大切にしている言葉</p><p>{profile.startingLine}</p></div>
       <SectionHeading
         number="06"
         en="CONTACT"
@@ -518,8 +529,8 @@ export function Contact() {
       </div>
       <footer className="site-footer">
         <div>
-          <p>{profile.motto}</p>
-          <span>{profile.mottoJa}</span>
+          <p>{profile.nameEn}</p>
+          <span>{profile.role}</span>
         </div>
         <a className="text-link" href="#profile">
           ページの先頭へ <ArrowUpRight size={18} aria-hidden="true" />

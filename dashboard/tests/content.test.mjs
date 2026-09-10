@@ -40,7 +40,7 @@ test("No.5: three distinct internships keep their certified periods and duties",
   }
 });
 
-test("No.7: all eight records remain distinct and accurately classified", () => {
+test("No.7: all nine records remain distinct and accurately classified", () => {
   assert.equal(content.achievements.length, 9);
   const expected = {
     "symposium-10": ["award", "ポスター部門・医療／医学分野 最優秀賞"],
@@ -117,4 +117,15 @@ test("Public content contains no private source paths, unsupported metrics, or p
       assert.ok(link.label.trim().length > 0);
     }
   assert.equal(content.contact.email, "shinri.suzuki@keio.jp");
+});
+
+test("Personal philosophy additions preserve every fact from the corrected public baseline", async () => {
+  const { createHash } = await import('node:crypto');
+  const previous = structuredClone({ ...content });
+  for (const key of ['futureVariable', 'futureMeaning', 'startingLine', 'blueRoseMeaning']) delete previous.profile[key];
+  // Canonical exported data from source 39e11268, before adding the owner's words.
+  assert.equal(createHash('sha256').update(JSON.stringify(previous)).digest('hex'),
+    '5b8698e5f7d307a44570f3798433348e8d524f65f10b3ab64af5d3461bc787a5');
+  assert.equal(content.profile.futureVariable, 'Future = Variable');
+  assert.equal(content.profile.startingLine, '後悔するよりはスタートラインを描こう');
 });

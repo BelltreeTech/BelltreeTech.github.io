@@ -13,6 +13,10 @@ export const profile = {
   building: "From scratch",
   motto: "Future = [ ]",
   mottoJa: "無色透明なら何色にもなれる",
+  futureVariable: "Future = Variable",
+  futureMeaning: "未来は固定されたものではなく、選択を加え、手放し、ときには白紙から始めながら、自分で変えていくもの。",
+  startingLine: "後悔するよりはスタートラインを描こう",
+  blueRoseMeaning: "夢が叶う、奇跡、可能性。青い薔薇に重ねている、大切な言葉です。",
   statement:
     "人の感情や背景を理解するAIを、技術と人間の両側から考える。情報科学・心理学・法律と倫理の接点を探り、研究を社会につながる形へ育てていきます。",
   roles: [
