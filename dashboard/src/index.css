@@ -506,6 +506,7 @@ select option { color: var(--ink); background: var(--paper); }
 .identity-reading { font-size: .72rem; color: var(--blue-dark); letter-spacing: .14em; margin-top: 10px; }
 .hero-identity { margin-top: 40px; }
 .hero-question { font-size: clamp(2rem, 3.5vw, 3.7rem); line-height: 1.6; font-weight: 450; letter-spacing: .015em; display: block; }
+.hero-question > .keep-phrase { font: inherit; letter-spacing: inherit; }
 .affiliation { margin-top: 24px; }
 .affiliation, .hero-fields { font-size: .88rem; }
 .focus-frame { padding: 0; }

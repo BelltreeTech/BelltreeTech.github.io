@@ -122,7 +122,10 @@ export function Profile() {
             <p className="identity-reading">{profile.nameEn}</p></div>
           </div>
           <div className="hero-identity">
-            <p className="hero-question">問い、つくり、{" "}<br />また問う。</p>
+            <p className="hero-question">
+              感情を理解するAIを<br />
+              <span className="keep-phrase">研究・開発</span><span className="keep-phrase">しています。</span>
+            </p>
             <p className="affiliation">{profile.affiliation}</p>
             <p className="hero-fields">{profile.fields}</p>
           </div>
@@ -495,9 +498,7 @@ export function Contact() {
         en="CONTACT"
         title={
           <>
-            次の問いを、
-            <wbr />
-            <span className="keep-phrase">一緒に。</span>
+            <span className="keep-phrase">研究・開発の</span><span className="keep-phrase">ご相談</span>
           </>
         }
       />
