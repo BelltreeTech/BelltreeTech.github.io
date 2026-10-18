@@ -16,9 +16,9 @@ export const profile = {
   futureVariable: "Future = Variable",
   futureMeaning: "未来は固定されたものではなく、選択を加え、手放し、ときには白紙から始めながら、自分で変えていくもの。",
   startingLine: "後悔するよりはスタートラインを描こう",
-  blueRoseMeaning: "夢が叶う、奇跡、可能性。青い薔薇に重ねている、大切な言葉です。",
+  blueRoseMeaning: "夢が叶う、奇跡、可能性。青い薔薇に重ねている大切な言葉です。",
   statement:
-    "人の感情や背景を理解するAIを、技術と人間の両側から考える。情報科学・心理学・法律と倫理の接点を探り、研究を社会につながる形へ育てていきます。",
+    "人の感情や背景を理解するAIを、技術と人間の両面から考える。情報科学・心理学・法律と倫理の接点を探り、研究を社会につながる形へ育てていきます。",
   roles: [
     {
       organization: "一般社団法人ウェルネステックラボ",
@@ -38,10 +38,10 @@ export const projects = [
     name: "Polaris",
     tagline: "感情を理解し、対話に生かすAI",
     summary:
-      "入院中の中高生に向けた、お悩み相談AIの研究・開発。相手の感情や置かれた状況を、対話の設計にどう取り入れられるかを探っています。",
+      "入院中の中高生に向けたお悩み相談AIを研究・開発しています。相手の感情や置かれた状況を、対話の設計にどう取り入れられるかを探っています。",
     aim: "入院生活の中で悩みを話せる場をつくり、一人ひとりに寄り添う対話を目指す。",
     approach:
-      "表情分析（FACS）と大規模言語モデル（LLM）の接点を研究。発表やユーザーテストで得た気づきを、設計の見直しにつなげています。",
+      "表情分析（FACS）と大規模言語モデル（LLM）の接点を研究しています。発表やユーザーテストで得た気づきを、設計の見直しにつなげています。",
     stack: ["Python", "PyTorch", "NumPy", "FACS", "LLM"],
     status: "研究・開発",
     links: [],
@@ -127,7 +127,7 @@ export const achievements = [
     dateLabel: "2025年7月",
     result: "Applied Science / Medical Science 分野で出場",
     description:
-      "国際大会に出場。幅広い研究や価値観に触れ、対話AIの設計についてフィードバックを受けました。",
+      "国際大会に出場しました。幅広い研究や価値観に触れ、対話AIの設計についてフィードバックを受けました。",
     organization: "Global Link Singapore",
     links: [],
   },
@@ -153,7 +153,7 @@ export const achievements = [
     dateLabel: "2025年3月",
     result: "高校生の部・スタートアップ部門 銀賞",
     description:
-      "Polarisを発表。社会実装や収益性の観点からフィードバックを受け、開発とユーザーテストの取り組みが評価されました。",
+      "Polarisを発表しました。社会実装や収益性の観点からフィードバックを受け、開発とユーザーテストの取り組みが評価されました。",
     organization: "株式会社旺文社",
     links: [],
   },
@@ -179,7 +179,7 @@ export const achievements = [
     dateLabel: "2025年2月",
     result: "地域Summit特別賞",
     description:
-      "Polarisの活動で受賞。AIとの対話だからこそできる支援や、対話の受け止められ方について考えを深めました。",
+      "Polarisの活動で受賞しました。AIとの対話だからこそできる支援や、対話の受け止められ方について考えを深めました。",
     organization: "全国高校生マイプロジェクト全国事務局",
     links: [],
   },
@@ -205,7 +205,7 @@ export const achievements = [
     dateLabel: "2025年",
     result: "第10期生として採択",
     description:
-      "選考を経て第10期生として採択。事業や社会との接点を考え、挑戦する同世代との学びにつなげています。",
+      "選考を経て第10期生として採択されました。事業や社会との接点を考え、挑戦する同世代との学びにつなげています。",
     organization: "MAKERS UNIVERSITY U-18",
     links: [{ label: "プログラム公式サイト", url: "https://makers-u18.jp/" }],
   },
@@ -218,7 +218,7 @@ export const achievements = [
     dateLabel: "2024年12月",
     result: "東武不動産賞・奨励賞",
     description:
-      "ポスター発表部門で、入院中の中高生を対象としたお悩み相談サービスを発表。同大会の企業賞と奨励賞を受賞しました。",
+      "ポスター発表部門で、入院中の中高生を対象としたお悩み相談サービスを発表しました。同大会の企業賞と奨励賞を受賞しました。",
     organization: "株式会社リバネス",
     links: [],
   },
@@ -248,7 +248,7 @@ export const media = [
     date: "2026-08",
     dateLabel: "2026年8月",
     result: "インタビュー掲載",
-    description: "研究や活動について紹介いただきました。",
+    description: "研究や活動について紹介していただきました。",
     links: [{ label: "掲載記事を読む", url: "https://steenz.jp/59653/" }],
   },
   {
@@ -260,7 +260,7 @@ export const media = [
     dateLabel: "2025年9月",
     result: "研究・活動の紹介",
     description:
-      "表情分析（FACS）とLLMを組み合わせるAIの研究について紹介いただきました。",
+      "表情分析（FACS）とLLMを組み合わせるAIの研究について紹介していただきました。",
     links: [
       {
         label: "掲載記事を読む",
@@ -312,7 +312,7 @@ export const activities = [
     title: "VRプロフェッショナルアカデミー",
     status: "学び・制作",
     description:
-      "VRを学び、ハッカソン・フェスでチームリーダーを経験。企画や開発、チームでの協働に取り組みました。",
+      "VRを学び、ハッカソン・フェスでチームリーダーを経験しました。企画や開発、チームでの協働に取り組みました。",
   },
 ];
 
@@ -338,7 +338,7 @@ export const domains = [
     name: "法律・倫理",
     nameEn: "Law & Ethics",
     description:
-      "技術が人や社会に与える影響を考える。倫理的・法的・社会的課題を、AIの設計と実装の中に位置づけます。",
+      "技術が人や社会に与える影響を考える。倫理的・法的・社会的課題をAIの設計と実装の中に位置づけます。",
     topics: ["ELSI", "Responsible AI", "AI Governance"],
   },
 ];
@@ -392,7 +392,7 @@ export const roadmap = [
 
 export const contact = {
   email: "shinri.suzuki@keio.jp",
-  invitation: "研究・開発の相談や、異なる専門からの対話をお待ちしています。",
+  invitation: "研究・開発の相談や、専門の異なる方との対話をお待ちしています。",
   topics: [
     "AI・感情理解の共同研究",
     "医療・心理・法律と倫理の接点",

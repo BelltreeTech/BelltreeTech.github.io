@@ -119,13 +119,13 @@ test("Public content contains no private source paths, unsupported metrics, or p
   assert.equal(content.contact.email, "shinri.suzuki@keio.jp");
 });
 
-test("Personal philosophy additions preserve every fact from the corrected public baseline", async () => {
+test("Reviewed Japanese copy matches the corrected public content snapshot", async () => {
   const { createHash } = await import('node:crypto');
   const previous = structuredClone({ ...content });
   for (const key of ['futureVariable', 'futureMeaning', 'startingLine', 'blueRoseMeaning']) delete previous.profile[key];
-  // Canonical exported data from source 39e11268, before adding the owner's words.
+  // Prose-only edits independently reviewed against source d5c0de3; factual fields unchanged.
   assert.equal(createHash('sha256').update(JSON.stringify(previous)).digest('hex'),
-    '5b8698e5f7d307a44570f3798433348e8d524f65f10b3ab64af5d3461bc787a5');
+    'b11bdaf4b4f06c560fa4166200ac037d9aa470e1fd612b7877cf26fbdf58b5df');
   assert.equal(content.profile.futureVariable, 'Future = Variable');
   assert.equal(content.profile.startingLine, '後悔するよりはスタートラインを描こう');
 });

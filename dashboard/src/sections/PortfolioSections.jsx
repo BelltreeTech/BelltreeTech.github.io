@@ -70,7 +70,6 @@ const focusItems = [
 
 function FocusFrame() {
   const researchIntro = `${projects[0].summary.split("。")[0]}。`;
-  const introBreak = researchIntro.indexOf("、") + 1;
   const [selected, setSelected] = useState("research");
   const current = focusItems.find((item) => item.id === selected);
   return (
@@ -89,7 +88,7 @@ function FocusFrame() {
         {selected === "research" && <>
           <h2 className="focus-title">{projects[0].name}<span className="focus-dot" aria-hidden="true">.</span></h2>
           <p className="focus-tagline">{projects[0].tagline}</p>
-          <p className="focus-copy">{researchIntro.slice(0, introBreak)}<br />{researchIntro.slice(introBreak)}</p>
+          <p className="focus-copy">{researchIntro}</p>
         </>}
         {selected === "internships" && <>
           <h2 className="focus-title focus-title-ja">現場から、<br />考える。</h2>
@@ -157,7 +156,7 @@ export function Research() {
       aria-label="研究・制作"
     >
       <SectionHeading number="02" en="RESEARCH & PROJECTS" title="研究・制作">
-        感情を理解するAIを軸に、実装と、人や社会への問いを行き来しています。
+        感情を理解するAIを軸に、実装と人や社会への問いを行き来しています。
       </SectionHeading>
       <div className="projects-grid">
         {projects.map((project, index) => (
@@ -218,7 +217,7 @@ export function Internships() {
       aria-label="インターン"
     >
       <SectionHeading number="03" en="EXPERIENCE" title="インターン">
-        事業を考えること、技術をつくること、人に届けること。3つの現場で学びました。
+        3つの現場で、事業を考えること、技術をつくること、人に届けることを学びました。
       </SectionHeading>
       <div className="experience-list">
         {internships.map((item, index) => (
