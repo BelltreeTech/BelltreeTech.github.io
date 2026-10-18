@@ -11,7 +11,7 @@ export const profile = {
   focus: "Emotion-Aware AI",
   thinking: "From first principles",
   building: "From scratch",
-  motto: "Future = [ ]",
+  motto: "Future = []",
   mottoJa: "無色透明なら何色にもなれる",
   futureVariable: "Future = Variable",
   futureMeaning: "未来は固定されたものではなく、選択を加え、手放し、ときには白紙から始めながら、自分で変えていくもの。",
@@ -44,6 +44,19 @@ export const projects = [
       "表情分析（FACS）と大規模言語モデル（LLM）の接点を研究しています。発表やユーザーテストで得た気づきを、設計の見直しにつなげています。",
     stack: ["Python", "PyTorch", "NumPy", "FACS", "LLM"],
     status: "研究・開発",
+    links: [],
+  },
+  {
+    id: "ai-law",
+    name: "AIと法",
+    tagline: "AIエージェントの行為と利用者の刑事責任",
+    summary:
+      "AIエージェントが適法な依頼を進める中で、対象外のサーバーに無承諾でアクセスした場合の利用者の刑事責任を研究しています。",
+    aim: "AIによるアクセスを利用者自身の行為と評価する根拠と、利用者が何を認識していたかを分けて考える。",
+    approach:
+      "本人が承認する場合、自動審査が誤って許可する場合、個別の許可を要しない場合を比較しています。法令・判例・先行研究を読み、解釈の根拠と未解決の点を整理しています。",
+    stack: ["AIエージェント", "刑法", "不正アクセス禁止法"],
+    status: "研究中",
     links: [],
   },
 ];

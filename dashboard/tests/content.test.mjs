@@ -3,9 +3,11 @@ import assert from "node:assert/strict";
 import * as content from "../src/data/portfolioData.js";
 import { assertCorrectedPublicContent } from "./helpers.cjs";
 
-test("Owner corrections retain one real project and only confirmed affiliations", () => {
-  assert.deepEqual(content.projects.map((item) => item.id), ["polaris"]);
+test("Verified research and owner corrections retain only confirmed projects and affiliations", () => {
+  assert.deepEqual(content.projects.map((item) => item.id), ["polaris", "ai-law"]);
   assert.equal(content.projects[0].name, "Polaris");
+  assert.equal(content.projects[1].status, "研究中");
+  assert.deepEqual(content.projects[1].links, []);
   assert.deepEqual(content.profile.roles, [
     {
       organization: "一般社団法人ウェルネステックラボ",
@@ -123,9 +125,9 @@ test("Reviewed Japanese copy matches the corrected public content snapshot", asy
   const { createHash } = await import('node:crypto');
   const previous = structuredClone({ ...content });
   for (const key of ['futureVariable', 'futureMeaning', 'startingLine', 'blueRoseMeaning']) delete previous.profile[key];
-  // Prose-only edits independently reviewed against source d5c0de3; factual fields unchanged.
+  // Existing facts preserved; AI-law research checked against the 2026-10-18 v08 note.
   assert.equal(createHash('sha256').update(JSON.stringify(previous)).digest('hex'),
-    'b11bdaf4b4f06c560fa4166200ac037d9aa470e1fd612b7877cf26fbdf58b5df');
+    '7a8f246ca97d94bbfd4aaaae6cd3ff292d87411924d8a86a415e9775d1b652c4');
   assert.equal(content.profile.futureVariable, 'Future = Variable');
   assert.equal(content.profile.startingLine, '後悔するよりはスタートラインを描こう');
 });

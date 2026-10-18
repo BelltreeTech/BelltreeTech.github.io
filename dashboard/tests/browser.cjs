@@ -119,8 +119,8 @@ async function openEveryDetail(page) {
   const count = await summaries.count();
   assert.equal(
     count,
-    13,
-    "one Polaris, three internships and nine activity records provide 13 details",
+    14,
+    "two research projects, three internships and nine activity records provide 14 details",
   );
   for (let index = 0; index < count; index++) {
     const summary = summaries.nth(index);
@@ -208,14 +208,16 @@ async function checkReadingLayout(page, label) {
 async function checkCorrectionStructure(page) {
   assert.equal(
     await page.locator("#research article").count(),
-    1,
-    "only one project card remains",
+    2,
+    "Polaris and AI-law research are displayed",
   );
   assert.equal(
     await page.locator("#research #polaris").count(),
     1,
     "Polaris remains reachable",
   );
+  assert.equal(await page.locator("#research #ai-law").count(), 1, "AI-law research remains reachable");
+  assert.equal(await page.locator(".hero-question").innerText(), "Future = []");
   assert.equal(
     await page.locator("#internships article").count(),
     3,
@@ -228,7 +230,7 @@ async function checkCorrectionStructure(page) {
   );
   assert.equal(
     await page.locator("main details").count(),
-    13,
+    14,
     "corrected detail count",
   );
   assert.equal(

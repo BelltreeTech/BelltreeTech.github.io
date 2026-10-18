@@ -122,10 +122,7 @@ export function Profile() {
             <p className="identity-reading">{profile.nameEn}</p></div>
           </div>
           <div className="hero-identity">
-            <p className="hero-question">
-              感情を理解するAIを<br />
-              <span className="keep-phrase">研究・開発</span><span className="keep-phrase">しています。</span>
-            </p>
+            <p className="hero-question">{profile.motto}</p>
             <p className="affiliation">{profile.affiliation}</p>
             <p className="hero-fields">{profile.fields}</p>
           </div>
@@ -159,7 +156,7 @@ export function Research() {
       aria-label="研究・制作"
     >
       <SectionHeading number="02" en="RESEARCH & PROJECTS" title="研究・制作">
-        感情を理解するAIを軸に、実装と人や社会への問いを行き来しています。
+        感情を理解するAIの開発と、AIエージェントの利用に伴う刑事責任を研究しています。
       </SectionHeading>
       <div className="projects-grid">
         {projects.map((project, index) => (
